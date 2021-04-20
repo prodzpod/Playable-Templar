@@ -49,7 +49,7 @@ namespace Templar
 			Templar.characterDisplay.transform.localScale = Vector3.one * 0.8f;
 			Templar.characterDisplay.AddComponent<Templar.TemplarMenuAnim>();
 			Templar.characterDisplay.AddComponent<NetworkIdentity>();
-			Templar.myCharacter.GetComponent<CameraTargetParams>().cameraParams = Resources.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CameraTargetParams>().cameraParams;
+			//Templar.myCharacter.GetComponent<CameraTargetParams>().cameraParams = Resources.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CameraTargetParams>().cameraParams;
 			GameObject gameObject = Resources.Load<GameObject>("Prefabs/CharacterBodies/Pot2Body");
 			MeshRenderer componentInChildren = gameObject.GetComponentInChildren<MeshRenderer>();
 			GameObject gameObject2 = componentInChildren.gameObject.InstantiateClone("VagabondHead", false, "C:Lemurian.cs", "RegisterLemurian", 679);
@@ -79,6 +79,15 @@ namespace Templar
 				}
 			};
 			Templar.myCharacter.GetComponentInChildren<CharacterModel>().baseRendererInfos = baseRendererInfos2;
+			CharacterCameraParams TemplarCam = ScriptableObject.CreateInstance<CharacterCameraParams>();
+			TemplarCam.name = "TemplarCam";
+			TemplarCam.minPitch = -70f;
+			TemplarCam.maxPitch = 70f;
+			TemplarCam.wallCushion = 0.1f;
+			TemplarCam.pivotVerticalOffset = 0f;
+			TemplarCam.standardLocalCameraPos = new Vector3(-0.35f, 2f, -12f);
+			Templar.myCharacter.GetComponent<CameraTargetParams>().cameraParams = Resources.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CameraTargetParams>().cameraParams;
+
 			CharacterBody component = Templar.myCharacter.GetComponent<CharacterBody>();
 			component.portraitIcon = Assets.templarIcon;
 			component.SetSpreadBloom(0f, false);
