@@ -49,7 +49,7 @@ namespace Templar
 			gameObject3.AddComponent<Templar.TemplarSeparateFromParent>();
 			gameObject3.transform.localScale *= 0.8f;
 			Templar.templarRocket.GetComponent<ProjectileController>().ghostPrefab = gameObject2;
-			Templar.templarRocketEffect = Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().impactEffect.InstantiateClone("TemplarRocketImpact", true, "CLemurian.cs", "ProjectileSetup", 664);
+			Templar.templarRocketEffect = Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().impactEffect.InstantiateClone("TemplarRocketImpact", true, "C:Lemurian.cs", "ProjectileSetup", 664);
 			Templar.templarRocketEffect.AddComponent<Templar.TemplarExplosionForce>();
 			bool flag3 = Templar.templarRocketEffect.GetComponent<VFXAttributes>();
 			bool flag4 = flag3;

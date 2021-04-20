@@ -19,8 +19,10 @@ namespace Templar
 		"SurvivorAPI",
 		"LanguageAPI",
 		"LoadoutAPI",
-		"BuffAPI"
-	})]
+		"BuffAPI",
+		"EffectAPI"
+	}
+	)]
 	public class Loader : BaseUnityPlugin
 	{
 		public void Awake()
