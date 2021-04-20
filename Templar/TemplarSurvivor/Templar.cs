@@ -618,126 +618,6 @@ namespace Templar
 			ProcCoefficientCatalog.AddSkill("TEMPLAR_SPECIAL_FIRE_NAME", "Bullet", 0.8f);
 		}
 
-		// (get) Token: 0x060000A3 RID: 163 RVA: 0x0000890A File Offset: 0x00006B0A
-		// (set) Token: 0x060000A4 RID: 164 RVA: 0x00008911 File Offset: 0x00006B11
-		public static bool IsBUDefined { get; private set; }
-
-		// (get) Token: 0x060000A5 RID: 165 RVA: 0x00008919 File Offset: 0x00006B19
-		// (set) Token: 0x060000A6 RID: 166 RVA: 0x00008920 File Offset: 0x00006B20
-		public static bool IsBUDefined2 { get; private set; }
-
-		public static GameObject myCharacter;
-
-		public static GameObject TemplarPrefab;
-
-		public static GameObject characterDisplay;
-
-		public static GameObject doppelganger;
-
-		private static readonly Color CHAR_COLOR = new Color(0.784313738f, 0.294117659f, 0.05882353f);
-
-		public static GameObject templarRocket;
-
-		public static GameObject templarGrenade;
-
-		public static GameObject templarRocketEffect;
-
-		public static ConfigEntry<float> baseHealth;
-
-		public static ConfigEntry<float> healthGrowth;
-
-		public static ConfigEntry<float> baseArmor;
-
-		public static ConfigEntry<float> baseDamage;
-
-		public static ConfigEntry<float> damageGrowth;
-
-		public static ConfigEntry<float> baseRegen;
-
-		public static ConfigEntry<float> regenGrowth;
-
-		public static ConfigEntry<float> FireBuffDurationBonus;
-
-		public static ConfigEntry<float> baseJumpPower;
-
-		public static ConfigEntry<string> enabled;
-
-		public static ConfigEntry<float> minigunDamageCoefficient;
-
-		public static ConfigEntry<float> minigunProcCoefficient;
-
-		public static ConfigEntry<float> minigunForce;
-
-		public static ConfigEntry<float> minigunArmorBoost;
-
-		public static ConfigEntry<float> minigunStationaryArmorBoost;
-
-		public static ConfigEntry<float> minigunMinFireRate;
-
-		public static ConfigEntry<float> minigunMaxFireRate;
-
-		public static ConfigEntry<float> minigunFireRateGrowth;
-
-		public static ConfigEntry<float> rifleDamageCoefficient;
-
-		public static ConfigEntry<float> rifleProcCoefficient;
-
-		public static ConfigEntry<float> rifleForce;
-
-		public static ConfigEntry<float> rifleFireRate;
-
-		public static ConfigEntry<int> clayGrenadeStock;
-
-		public static ConfigEntry<float> clayGrenadeCooldown;
-
-		public static ConfigEntry<float> clayGrenadeDamageCoefficient;
-
-		public static ConfigEntry<float> clayGrenadeProcCoefficient;
-
-		public static ConfigEntry<float> clayGrenadeRadius;
-
-		public static ConfigEntry<float> clayGrenadeDetonationTime;
-
-		public static ConfigEntry<int> blunderbussStock;
-
-		public static ConfigEntry<float> blunderbussCooldown;
-
-		public static ConfigEntry<int> blunderbussPelletCount;
-
-		public static ConfigEntry<float> blunderbussDamageCoefficient;
-
-		public static ConfigEntry<float> blunderbussProcCoefficient;
-
-		public static ConfigEntry<float> blunderbussSpread;
-
-		public static ConfigEntry<int> tarStock;
-
-		public static ConfigEntry<float> tarCooldown;
-
-		public static ConfigEntry<int> overdriveStock;
-
-		public static ConfigEntry<float> overdriveCooldown;
-
-		public static ConfigEntry<int> dashStock;
-
-		public static ConfigEntry<float> dashCooldown;
-
-		public static ConfigEntry<int> bazookaStock;
-
-		public static ConfigEntry<float> bazookaCooldown;
-
-		public static ConfigEntry<float> bazookaDamageCoefficient;
-
-		public static ConfigEntry<float> bazookaProcCoefficient;
-
-		public static ConfigEntry<float> bazookaBlastRadius;
-
-		public static ConfigEntry<float> miniBazookaDamageCoefficient;
-
-		public static ConfigEntry<bool> jellyfishEvent;
-
-		public static ConfigEntry<bool> bazookaGoBoom;
-
 		public class TemplarMissileController : MonoBehaviour
 		{
 			private void Awake()
@@ -860,5 +740,122 @@ namespace Templar
 
 			private uint playID;
 		}
+
+		public static bool IsBUDefined { get; private set; }
+
+
+		public static bool IsBUDefined2 { get; private set; }
+
+		public static GameObject myCharacter;
+
+		public static GameObject TemplarPrefab;
+
+		public static GameObject characterDisplay;
+
+		public static GameObject doppelganger;
+
+		private static readonly Color CHAR_COLOR = new Color(0.784313738f, 0.294117659f, 0.05882353f);
+
+		public static GameObject templarRocket;
+
+		public static GameObject templarGrenade;
+
+		public static GameObject templarRocketEffect;
+
+		public static ConfigEntry<float> baseHealth;
+
+		public static ConfigEntry<float> healthGrowth;
+
+		public static ConfigEntry<float> baseArmor;
+
+		public static ConfigEntry<float> baseDamage;
+
+		public static ConfigEntry<float> damageGrowth;
+
+		public static ConfigEntry<float> baseRegen;
+
+		public static ConfigEntry<float> regenGrowth;
+
+		public static ConfigEntry<float> FireBuffDurationBonus;
+
+		public static ConfigEntry<float> baseJumpPower;
+
+		public static ConfigEntry<string> enabled;
+
+		public static ConfigEntry<float> minigunDamageCoefficient;
+
+		public static ConfigEntry<float> minigunProcCoefficient;
+
+		public static ConfigEntry<float> minigunForce;
+
+		public static ConfigEntry<float> minigunArmorBoost;
+
+		public static ConfigEntry<float> minigunStationaryArmorBoost;
+
+		public static ConfigEntry<float> minigunMinFireRate;
+
+		public static ConfigEntry<float> minigunMaxFireRate;
+
+		public static ConfigEntry<float> minigunFireRateGrowth;
+
+		public static ConfigEntry<float> rifleDamageCoefficient;
+
+		public static ConfigEntry<float> rifleProcCoefficient;
+
+		public static ConfigEntry<float> rifleForce;
+
+		public static ConfigEntry<float> rifleFireRate;
+
+		public static ConfigEntry<int> clayGrenadeStock;
+
+		public static ConfigEntry<float> clayGrenadeCooldown;
+
+		public static ConfigEntry<float> clayGrenadeDamageCoefficient;
+
+		public static ConfigEntry<float> clayGrenadeProcCoefficient;
+
+		public static ConfigEntry<float> clayGrenadeRadius;
+
+		public static ConfigEntry<float> clayGrenadeDetonationTime;
+
+		public static ConfigEntry<int> blunderbussStock;
+
+		public static ConfigEntry<float> blunderbussCooldown;
+
+		public static ConfigEntry<int> blunderbussPelletCount;
+
+		public static ConfigEntry<float> blunderbussDamageCoefficient;
+
+		public static ConfigEntry<float> blunderbussProcCoefficient;
+
+		public static ConfigEntry<float> blunderbussSpread;
+
+		public static ConfigEntry<int> tarStock;
+
+		public static ConfigEntry<float> tarCooldown;
+
+		public static ConfigEntry<int> overdriveStock;
+
+		public static ConfigEntry<float> overdriveCooldown;
+
+		public static ConfigEntry<int> dashStock;
+
+		public static ConfigEntry<float> dashCooldown;
+
+		public static ConfigEntry<int> bazookaStock;
+
+		public static ConfigEntry<float> bazookaCooldown;
+
+		public static ConfigEntry<float> bazookaDamageCoefficient;
+
+		public static ConfigEntry<float> bazookaProcCoefficient;
+
+		public static ConfigEntry<float> bazookaBlastRadius;
+
+		public static ConfigEntry<float> miniBazookaDamageCoefficient;
+
+		public static ConfigEntry<bool> jellyfishEvent;
+
+		public static ConfigEntry<bool> bazookaGoBoom;	
 	}
 }

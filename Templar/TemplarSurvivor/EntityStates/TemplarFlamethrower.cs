@@ -107,7 +107,8 @@ namespace Templar
 						bool flag6 = flag5;
 						if (flag6)
 						{
-							//particleSystem.main.loop = true;
+							var main = particleSystem.main;
+							main.loop = true;
 						}
 					}
 				}

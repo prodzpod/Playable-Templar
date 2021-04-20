@@ -6,7 +6,6 @@ namespace Templar
 {
 	public class ContentPacks : IContentPackProvider
 	{
-		// (get) Token: 0x06000010 RID: 16 RVA: 0x00002DDE File Offset: 0x00000FDE
 		public string identifier
 		{
 			get

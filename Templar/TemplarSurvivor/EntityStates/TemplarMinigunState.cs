@@ -90,7 +90,6 @@ namespace Templar
 			base.OnExit();
 		}
 
-		// (get) Token: 0x06000066 RID: 102 RVA: 0x000057AC File Offset: 0x000039AC
 		protected ref InputBankTest.ButtonState skillButtonState
 		{
 			get

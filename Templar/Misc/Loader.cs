@@ -93,8 +93,6 @@ namespace Templar
 			addContentPackProvider(new ContentPacks());
 		}
 
-		// (get) Token: 0x06000008 RID: 8 RVA: 0x00002C02 File Offset: 0x00000E02
-		// (set) Token: 0x06000009 RID: 9 RVA: 0x00002C09 File Offset: 0x00000E09
 		public static bool IsBUDefined { get; private set; }
 
 		internal static List<GameObject> projectilePrefabs = new List<GameObject>();
