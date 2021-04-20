@@ -18,6 +18,12 @@ namespace Templar
 				base.characterBody.AddTimedBuff(Buffs.TemplarOverdriveBuff, 3f);
 			}
 			EffectManager.SimpleMuzzleFlash(FireTarball.effectPrefab, base.gameObject, "Root", false);
+			RoR2.EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosivePotExplosion"), new RoR2.EffectData
+			{
+				origin = base.characterBody.corePosition,
+				scale = 12f
+			}, true); 
+
 			BlastAttack blastAttack = new BlastAttack
 			{
 				attacker = base.gameObject,

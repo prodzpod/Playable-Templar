@@ -327,7 +327,7 @@ namespace Templar
 			skillDef.fullRestockOnAssign = true;
 			skillDef.interruptPriority = InterruptPriority.Skill;
 			skillDef.isCombatSkill = true;
-			skillDef.mustKeyPress = false;
+			skillDef.mustKeyPress = true;
 			skillDef.rechargeStock = 1;
 			skillDef.requiredStock = 1;
 			skillDef.stockToConsume = 1;
