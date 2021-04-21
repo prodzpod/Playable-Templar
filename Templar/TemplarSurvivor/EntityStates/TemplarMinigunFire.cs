@@ -29,7 +29,7 @@ namespace Templar
 		private void UpdateCrits()
 		{
 			this.critStat = base.characterBody.crit;
-			bool flag = this.lastCritCheck.timeSince >= 0.2f;
+			bool flag = this.lastCritCheck.timeSince >= 0.15f;
 			bool flag2 = flag;
 			if (flag2)
 			{
@@ -38,7 +38,7 @@ namespace Templar
 				bool flag4 = flag3;
 				if (flag4)
 				{
-					this.critEndTime = Run.FixedTimeStamp.now + 0.4f;
+					this.critEndTime = Run.FixedTimeStamp.now + 0.25f;
 				}
 			}
 		}

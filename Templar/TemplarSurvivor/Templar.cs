@@ -42,14 +42,13 @@ namespace Templar
 			{
 				kinematicCharacterMotor.SetCapsuleDimensions(kinematicCharacterMotor.Capsule.radius * 0.5f, kinematicCharacterMotor.Capsule.height * 0.5f, 0f);
 			}
-			Templar.myCharacter.GetComponent<CharacterBody>().aimOriginTransform.Translate(new Vector3(0f, 0f, 0.8f));
+			Templar.myCharacter.GetComponent<CharacterBody>().aimOriginTransform.Translate(new Vector3(0f, 0f, 0f));
 			Templar.myCharacter.GetComponent<SetStateOnHurt>().canBeHitStunned = false;
 			Templar.myCharacter.tag = "Player";
 			Templar.characterDisplay = Templar.myCharacter.GetComponent<ModelLocator>().modelBaseTransform.gameObject.InstantiateClone("TemplarDisplay", true, "C:TemplarClean.cs", "RegisterLemurian", 153);
 			Templar.characterDisplay.transform.localScale = Vector3.one * 0.8f;
 			Templar.characterDisplay.AddComponent<Templar.TemplarMenuAnim>();
 			Templar.characterDisplay.AddComponent<NetworkIdentity>();
-			//Templar.myCharacter.GetComponent<CameraTargetParams>().cameraParams = Resources.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CameraTargetParams>().cameraParams;
 			GameObject gameObject = Resources.Load<GameObject>("Prefabs/CharacterBodies/Pot2Body");
 			MeshRenderer componentInChildren = gameObject.GetComponentInChildren<MeshRenderer>();
 			GameObject gameObject2 = componentInChildren.gameObject.InstantiateClone("VagabondHead", false, "C:Lemurian.cs", "RegisterLemurian", 679);
