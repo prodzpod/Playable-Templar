@@ -18,12 +18,34 @@ namespace Templar
 				this.muzzleVfxTransform = UnityEngine.Object.Instantiate<GameObject>(MinigunFire.muzzleVfxPrefab, this.muzzleTransform).transform;
 			}
 			this.baseFireRate = 1f / MinigunFire.baseFireInterval;
-			this.baseBulletsPerSecond = (float)MinigunFire.baseBulletCount * this.baseFireRate;
+			//this.baseBulletsPerSecond = (float)MinigunFire.baseBulletCount * this.baseFireRate;
 			this.currentFireRate = TemplarMinigunFire.minFireRate;
 			this.critEndTime = Run.FixedTimeStamp.negativeInfinity;
 			this.lastCritCheck = Run.FixedTimeStamp.negativeInfinity;
 			Util.PlaySound(MinigunFire.startSound, base.gameObject);
 			base.PlayCrossfade("Gesture, Additive", "FireMinigun", 0.2f);
+		}
+		public override void FixedUpdate()
+		{
+			base.FixedUpdate();
+			this.baseFireRate = 1f / MinigunFire.baseFireInterval;
+			//this.baseBulletsPerSecond = (float)MinigunFire.baseBulletCount * this.baseFireRate;
+			this.fireTimer -= Time.fixedDeltaTime;
+			bool flag = this.fireTimer <= 0f;
+			bool flag2 = flag;
+			if (flag2)
+			{
+				this.attackSpeedStat = base.characterBody.attackSpeed;
+				float num = MinigunFire.baseFireInterval / this.attackSpeedStat / this.currentFireRate;
+				this.fireTimer += num;
+				this.OnFireShared();
+			}
+			bool flag3 = base.isAuthority && !base.skillButtonState.down;
+			bool flag4 = flag3;
+			if (flag4)
+			{
+				this.outer.SetNextState(new TemplarMinigunSpinDown());
+			}
 		}
 
 		private void UpdateCrits()
@@ -112,28 +134,6 @@ namespace Templar
 			}.Fire();
 		}
 
-		public override void FixedUpdate()
-		{
-			base.FixedUpdate();
-			this.baseFireRate = 1f / MinigunFire.baseFireInterval;
-			this.baseBulletsPerSecond = (float)MinigunFire.baseBulletCount * this.baseFireRate;
-			this.fireTimer -= Time.fixedDeltaTime;
-			bool flag = this.fireTimer <= 0f;
-			bool flag2 = flag;
-			if (flag2)
-			{
-				this.attackSpeedStat = base.characterBody.attackSpeed;
-				float num = MinigunFire.baseFireInterval / this.attackSpeedStat / this.currentFireRate;
-				this.fireTimer += num;
-				this.OnFireShared();
-			}
-			bool flag3 = base.isAuthority && !base.skillButtonState.down;
-			bool flag4 = flag3;
-			if (flag4)
-			{
-				this.outer.SetNextState(new TemplarMinigunSpinDown());
-			}
-		}
 
 		public static float baseDamageCoefficient = Templar.minigunDamageCoefficient.Value;
 
