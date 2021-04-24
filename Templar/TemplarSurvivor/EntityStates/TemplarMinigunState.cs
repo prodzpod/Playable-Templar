@@ -18,7 +18,7 @@ namespace Templar
 			bool flag2 = flag;
 			if (flag2)
 			{
-				base.characterBody.AddBuff(TemplarMinigunState.slowBuff);
+				//base.characterBody.AddBuff(TemplarMinigunState.slowBuff);
 				base.characterBody.AddBuff(Buffs.TemplArmorBuff);
 			}
 		}
@@ -72,7 +72,7 @@ namespace Templar
 			bool flag2 = flag;
 			if (flag2)
 			{
-				base.characterBody.RemoveBuff(TemplarMinigunState.slowBuff);
+				//base.characterBody.RemoveBuff(TemplarMinigunState.slowBuff);
 				bool flag3 = base.HasBuff(Buffs.TemplArmorBuff);
 				bool flag4 = flag3;
 				if (flag4)
@@ -103,7 +103,7 @@ namespace Templar
 			return InterruptPriority.Skill;
 		}
 
-		private static readonly BuffIndex slowBuff;
+		//private static readonly BuffIndex slowBuff;
 
 		private bool standStill;
 

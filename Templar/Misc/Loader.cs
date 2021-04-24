@@ -11,7 +11,7 @@ namespace Templar
 {
 	[BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.0.2")]
+	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.0.4")]
 	[BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)]
 	[R2APISubmoduleDependency(new string[]
 	{
