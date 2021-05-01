@@ -11,7 +11,7 @@ namespace Templar
 {
 	[BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.0.4")]
+	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.0.5")]
 	[BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)]
 	[R2APISubmoduleDependency(new string[]
 	{
@@ -53,7 +53,7 @@ namespace Templar
 			Templar.minigunArmorBoost = base.Config.Bind<float>(new ConfigDefinition("2 - Minigun", "Armor Bonus"), 50f, new ConfigDescription("Bonus armor while firing", null, Array.Empty<object>()));
 			Templar.minigunStationaryArmorBoost = base.Config.Bind<float>(new ConfigDefinition("2 - Minigun", "Stationary Armor Bonus"), 100f, new ConfigDescription("Bonus armor while standing still and firing", null, Array.Empty<object>()));
 			Templar.minigunMinFireRate = base.Config.Bind<float>(new ConfigDefinition("2 - Minigun", "Minimum Fire Rate"), 0.75f, new ConfigDescription("Starting fire rate", null, Array.Empty<object>()));
-			Templar.minigunMaxFireRate = base.Config.Bind<float>(new ConfigDefinition("2 - Minigun", "Maximum Fire Rate"), 45f, new ConfigDescription("Max fire rate", null, Array.Empty<object>()));
+			Templar.minigunMaxFireRate = base.Config.Bind<float>(new ConfigDefinition("2 - Minigun", "Maximum Fire Rate"), 1.35f, new ConfigDescription("Max fire rate", null, Array.Empty<object>()));
 			Templar.minigunFireRateGrowth = base.Config.Bind<float>(new ConfigDefinition("2 - Minigun", "Fire Rate Growth"), 0.01f, new ConfigDescription("Amount the fire rate increases per shot", null, Array.Empty<object>()));
 			Templar.rifleDamageCoefficient = base.Config.Bind<float>(new ConfigDefinition("3 - Tar Rifle", "Damage"), 0.5f, new ConfigDescription("Rifle damage per bullet", null, Array.Empty<object>()));
 			Templar.rifleProcCoefficient = base.Config.Bind<float>(new ConfigDefinition("3 - Tar Rifle", "Proc Coefficient"), 0.7f, new ConfigDescription("Rifle proc coefficient per bullet", null, Array.Empty<object>()));

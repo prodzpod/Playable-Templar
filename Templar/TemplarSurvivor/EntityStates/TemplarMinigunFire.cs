@@ -11,9 +11,7 @@ namespace Templar
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			bool flag = this.muzzleTransform && MinigunFire.muzzleVfxPrefab;
-			bool flag2 = flag;
-			if (flag2)
+			if (this.muzzleTransform && MinigunFire.muzzleVfxPrefab)
 			{
 				this.muzzleVfxTransform = UnityEngine.Object.Instantiate<GameObject>(MinigunFire.muzzleVfxPrefab, this.muzzleTransform).transform;
 			}
@@ -25,24 +23,22 @@ namespace Templar
 			Util.PlaySound(MinigunFire.startSound, base.gameObject);
 			base.PlayCrossfade("Gesture, Additive", "FireMinigun", 0.2f);
 		}
+
 		public override void FixedUpdate()
 		{
 			base.FixedUpdate();
 			this.baseFireRate = 1f / MinigunFire.baseFireInterval;
 			//this.baseBulletsPerSecond = (float)MinigunFire.baseBulletCount * this.baseFireRate;
 			this.fireTimer -= Time.fixedDeltaTime;
-			bool flag = this.fireTimer <= 0f;
-			bool flag2 = flag;
-			if (flag2)
+			if (this.fireTimer <= 0f)
 			{
 				this.attackSpeedStat = base.characterBody.attackSpeed;
 				float num = MinigunFire.baseFireInterval / this.attackSpeedStat / this.currentFireRate;
 				this.fireTimer += num;
 				this.OnFireShared();
 			}
-			bool flag3 = base.isAuthority && !base.skillButtonState.down;
-			bool flag4 = flag3;
-			if (flag4)
+
+			if (base.isAuthority && !base.skillButtonState.down)
 			{
 				this.outer.SetNextState(new TemplarMinigunSpinDown());
 			}
@@ -51,14 +47,10 @@ namespace Templar
 		private void UpdateCrits()
 		{
 			this.critStat = base.characterBody.crit;
-			bool flag = this.lastCritCheck.timeSince >= 0.15f;
-			bool flag2 = flag;
-			if (flag2)
+			if (this.lastCritCheck.timeSince >= 0.15f)
 			{
 				this.lastCritCheck = Run.FixedTimeStamp.now;
-				bool flag3 = base.RollCrit();
-				bool flag4 = flag3;
-				if (flag4)
+				if (base.RollCrit())
 				{
 					this.critEndTime = Run.FixedTimeStamp.now + 0.25f;
 				}
@@ -68,9 +60,7 @@ namespace Templar
 		public override void OnExit()
 		{
 			Util.PlaySound(MinigunFire.endSound, base.gameObject);
-			bool flag = this.muzzleVfxTransform;
-			bool flag2 = flag;
-			if (flag2)
+			if (this.muzzleVfxTransform)
 			{
 				EntityState.Destroy(this.muzzleVfxTransform.gameObject);
 				this.muzzleVfxTransform = null;
@@ -82,9 +72,7 @@ namespace Templar
 		private void OnFireShared()
 		{
 			Util.PlaySound(MinigunFire.fireSound, base.gameObject);
-			bool isAuthority = base.isAuthority;
-			bool flag = isAuthority;
-			if (flag)
+			if (base.isAuthority)
 			{
 				this.OnFireAuthority();
 			}

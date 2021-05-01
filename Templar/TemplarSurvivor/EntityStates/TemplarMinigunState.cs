@@ -14,11 +14,9 @@ namespace Templar
 			base.OnEnter();
 			this.oldMass = base.characterMotor.mass;
 			this.muzzleTransform = base.FindModelChild(MinigunState.muzzleName);
-			bool flag = NetworkServer.active && base.characterBody;
-			bool flag2 = flag;
-			if (flag2)
+			if (NetworkServer.active && base.characterBody)
 			{
-				//base.characterBody.AddBuff(TemplarMinigunState.slowBuff);
+
 				base.characterBody.AddBuff(Buffs.TemplArmorBuff);
 			}
 		}
@@ -34,13 +32,9 @@ namespace Templar
 			bool flag3 = flag2;
 			if (flag3)
 			{
-				bool flag4 = !base.characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff);
-				bool flag5 = flag4;
-				if (flag5)
+				if (!base.characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff))
 				{
-					bool active = NetworkServer.active;
-					bool flag6 = active;
-					if (flag6)
+					if (NetworkServer.active)
 					{
 						base.characterBody.RemoveBuff(Buffs.TemplArmorBuff);
 						base.characterBody.AddBuff(Buffs.TemplarstationaryArmorBuff);
@@ -50,13 +44,9 @@ namespace Templar
 			}
 			else
 			{
-				bool flag7 = base.characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff);
-				bool flag8 = flag7;
-				if (flag8)
+				if (base.characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff))
 				{
-					bool active2 = NetworkServer.active;
-					bool flag9 = active2;
-					if (flag9)
+					if (NetworkServer.active)
 					{
 						base.characterBody.RemoveBuff(Buffs.TemplarstationaryArmorBuff);
 						base.characterBody.AddBuff(Buffs.TemplArmorBuff);
@@ -68,20 +58,13 @@ namespace Templar
 
 		public override void OnExit()
 		{
-			bool flag = NetworkServer.active && base.characterBody;
-			bool flag2 = flag;
-			if (flag2)
+			if (NetworkServer.active && base.characterBody)
 			{
-				//base.characterBody.RemoveBuff(TemplarMinigunState.slowBuff);
-				bool flag3 = base.HasBuff(Buffs.TemplArmorBuff);
-				bool flag4 = flag3;
-				if (flag4)
+				if (base.HasBuff(Buffs.TemplArmorBuff))
 				{
 					base.characterBody.RemoveBuff(Buffs.TemplArmorBuff);
 				}
-				bool flag5 = base.HasBuff(Buffs.TemplarstationaryArmorBuff);
-				bool flag6 = flag5;
-				if (flag6)
+				if (base.HasBuff(Buffs.TemplarstationaryArmorBuff))
 				{
 					base.characterBody.RemoveBuff(Buffs.TemplarstationaryArmorBuff);
 				}
