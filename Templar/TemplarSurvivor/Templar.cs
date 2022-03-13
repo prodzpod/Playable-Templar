@@ -35,7 +35,7 @@ namespace Templar
 
 		internal static void TemplarSurvivor()
 		{
-			Templar.myCharacter = Resources.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").InstantiateClone("Templar_Survivor", true, "C:\\Users\\Tymmey\\Desktop\\RoRStuff\\Templar\\Templar\\Survivor\\Templar\\Templar.cs", "TemplarSurvivor", 37);
+			Templar.myCharacter = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").InstantiateClone("Templar_Survivor", true, "C:\\Users\\Tymmey\\Desktop\\RoRStuff\\Templar\\Templar\\Survivor\\Templar\\Templar.cs", "TemplarSurvivor", 37);
 			Templar.myCharacter.GetComponent<ModelLocator>().modelBaseTransform.gameObject.transform.localScale = Vector3.one * 0.9f;
 			Templar.myCharacter.GetComponent<ModelLocator>().modelBaseTransform.gameObject.transform.Translate(new Vector3(0f, 1.6f, 0f));
 			foreach (KinematicCharacterMotor kinematicCharacterMotor in Templar.myCharacter.GetComponentsInChildren<KinematicCharacterMotor>())
@@ -49,7 +49,7 @@ namespace Templar
 			Templar.characterDisplay.transform.localScale = Vector3.one * 0.8f;
 			Templar.characterDisplay.AddComponent<Templar.TemplarMenuAnim>();
 			Templar.characterDisplay.AddComponent<NetworkIdentity>();
-			GameObject gameObject = Resources.Load<GameObject>("Prefabs/CharacterBodies/Pot2Body");
+			GameObject gameObject = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/Pot2Body");
 			MeshRenderer componentInChildren = gameObject.GetComponentInChildren<MeshRenderer>();
 			GameObject gameObject2 = componentInChildren.gameObject.InstantiateClone("VagabondHead", false, "C:Lemurian.cs", "RegisterLemurian", 679);
 			UnityEngine.Object.Destroy(gameObject2.GetComponent<HurtBoxGroup>());
@@ -80,18 +80,18 @@ namespace Templar
 			Templar.myCharacter.GetComponentInChildren<CharacterModel>().baseRendererInfos = baseRendererInfos2;
 			CharacterCameraParams TemplarCam = ScriptableObject.CreateInstance<CharacterCameraParams>();
 			TemplarCam.name = "TemplarCam";
-			TemplarCam.minPitch = -70f;
-			TemplarCam.maxPitch = 70f;
-			TemplarCam.wallCushion = 0.1f;
-			TemplarCam.pivotVerticalOffset = 0f;
-			TemplarCam.standardLocalCameraPos = new Vector3(-0.35f, 2f, -12f);
-			Templar.myCharacter.GetComponent<CameraTargetParams>().cameraParams = Resources.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CameraTargetParams>().cameraParams;
+			TemplarCam.data.minPitch = -70f;
+			TemplarCam.data.maxPitch = 70f;
+			TemplarCam.data.wallCushion = 0.1f;
+			TemplarCam.data.pivotVerticalOffset = 0f;
+			TemplarCam.data.idealLocalCameraPos = new Vector3(-0.35f, 2f, -12f);
+			Templar.myCharacter.GetComponent<CameraTargetParams>().cameraParams = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CameraTargetParams>().cameraParams;
 
 			CharacterBody component = Templar.myCharacter.GetComponent<CharacterBody>();
 			component.portraitIcon = Assets.templarIcon;
 			component.SetSpreadBloom(0f, false);
-			component.spreadBloomCurve = Resources.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<CharacterBody>().spreadBloomCurve;
-			component.spreadBloomDecayTime = Resources.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<CharacterBody>().spreadBloomDecayTime;
+			component.spreadBloomCurve = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<CharacterBody>().spreadBloomCurve;
+			component.spreadBloomDecayTime = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<CharacterBody>().spreadBloomDecayTime;
 			component.name = "Templar_Survivor";
 			component.baseNameToken = "Templar_Survivor";
 			component.subtitleNameToken = "Templar_Subtitle";
@@ -107,11 +107,11 @@ namespace Templar
 			component.baseCrit = 1f;
 			component.baseMoveSpeed = 7f;
 			component.autoCalculateLevelStats = true;
-			component.crosshairPrefab = Resources.Load<GameObject>("Prefabs/Crosshair/SimpleDotCrosshair");
-			component.preferredPodPrefab = Resources.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CharacterBody>().preferredPodPrefab;
-			component.levelMoveSpeed = Resources.Load<GameObject>("Prefabs/CharacterBodies/LoaderBody").GetComponent<CharacterBody>().levelMoveSpeed;
-			component.sprintingSpeedMultiplier = Resources.Load<GameObject>("Prefabs/CharacterBodies/LoaderBody").GetComponent<CharacterBody>().sprintingSpeedMultiplier;
-			component.GetComponent<CharacterMotor>().mass = Resources.Load<GameObject>("Prefabs/CharacterBodies/LoaderBody").GetComponentInChildren<CharacterMotor>().mass;
+			component._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Crosshair/SimpleDotCrosshair");
+			component.preferredPodPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CrocoBody").GetComponent<CharacterBody>().preferredPodPrefab;
+			component.levelMoveSpeed = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/LoaderBody").GetComponent<CharacterBody>().levelMoveSpeed;
+			component.sprintingSpeedMultiplier = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/LoaderBody").GetComponent<CharacterBody>().sprintingSpeedMultiplier;
+			component.GetComponent<CharacterMotor>().mass = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/LoaderBody").GetComponentInChildren<CharacterMotor>().mass;
 			Templar.TemplarPrefab = Templar.myCharacter;
 			SurvivorDef survivorDef = ScriptableObject.CreateInstance<SurvivorDef>();
 			survivorDef.cachedName = "Templar_Survivor";
@@ -138,26 +138,26 @@ namespace Templar
 			Templar.UtilitySetup();
 			Templar.SpecialSetup();
 			Templar.PassiveSetup();
-			LoadoutAPI.AddSkill(typeof(TemplarChargeMiniRocket));
-			LoadoutAPI.AddSkill(typeof(TemplarChargeRocket));
-			LoadoutAPI.AddSkill(typeof(TemplarFireMiniRocket));
-			LoadoutAPI.AddSkill(typeof(TemplarFireRocket));
-			LoadoutAPI.AddSkill(typeof(TemplarFireSonicBoom));
-			LoadoutAPI.AddSkill(typeof(TemplarMinigunFire));
-			LoadoutAPI.AddSkill(typeof(TemplarMinigunSpinDown));
-			LoadoutAPI.AddSkill(typeof(TemplarMinigunSpinUp));
-			LoadoutAPI.AddSkill(typeof(TemplarMinigunState));
-			LoadoutAPI.AddSkill(typeof(TemplarRifleFire));
-			LoadoutAPI.AddSkill(typeof(TemplarRifleSpinDown));
-			LoadoutAPI.AddSkill(typeof(TemplarRifleState));
-			LoadoutAPI.AddSkill(typeof(TemplarShotgun));
-			LoadoutAPI.AddSkill(typeof(TemplarSidestep));
-			LoadoutAPI.AddSkill(typeof(TemplarSwapWeapon));
-			LoadoutAPI.AddSkill(typeof(TemplarThrowClaybomb));
-			LoadoutAPI.AddSkill(typeof(TemplarChargeBeam));
-			LoadoutAPI.AddSkill(typeof(TemplarFireBeam));
-			LoadoutAPI.AddSkill(typeof(TemplarFlamethrower));
-			LoadoutAPI.AddSkill(typeof(TemplarOverdrive));
+			Loader.entityStates.Add(typeof(TemplarChargeMiniRocket));
+			Loader.entityStates.Add(typeof(TemplarChargeRocket));
+			Loader.entityStates.Add(typeof(TemplarFireMiniRocket));
+			Loader.entityStates.Add(typeof(TemplarFireRocket));
+			Loader.entityStates.Add(typeof(TemplarFireSonicBoom));
+			Loader.entityStates.Add(typeof(TemplarMinigunFire));
+			Loader.entityStates.Add(typeof(TemplarMinigunSpinDown));
+			Loader.entityStates.Add(typeof(TemplarMinigunSpinUp));
+			Loader.entityStates.Add(typeof(TemplarMinigunState));
+			Loader.entityStates.Add(typeof(TemplarRifleFire));
+			Loader.entityStates.Add(typeof(TemplarRifleSpinDown));
+			Loader.entityStates.Add(typeof(TemplarRifleState));
+			Loader.entityStates.Add(typeof(TemplarShotgun));
+			Loader.entityStates.Add(typeof(TemplarSidestep));
+			Loader.entityStates.Add(typeof(TemplarSwapWeapon));
+			Loader.entityStates.Add(typeof(TemplarThrowClaybomb));
+			Loader.entityStates.Add(typeof(TemplarChargeBeam));
+			Loader.entityStates.Add(typeof(TemplarFireBeam));
+			Loader.entityStates.Add(typeof(TemplarFlamethrower));
+			Loader.entityStates.Add(typeof(TemplarOverdrive));
 		}
 
 		internal static void PrimarySetup()
@@ -186,11 +186,11 @@ namespace Templar
 				"KEYWORD_RAPIDFIRE"
 			};
 			skillDef.cancelSprintingOnActivation = true;
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			component.primary = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
 			skillFamily.variants = new SkillFamily.Variant[1];
-			LoadoutAPI.AddSkillFamily(skillFamily);
+
 			component.primary.SetFieldValue("_skillFamily", skillFamily);
 			SkillFamily skillFamily2 = component.primary.skillFamily;
 			skillFamily2.variants[0] = new SkillFamily.Variant
@@ -216,7 +216,6 @@ namespace Templar
 			skillDef.skillDescriptionToken = "TEMPLAR_PRIMARY_PRECISEMINIGUN_DESCRIPTION";
 			skillDef.skillName = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
 			skillDef.skillNameToken = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
-			LoadoutAPI.AddSkillDef(skillDef);
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
@@ -276,7 +275,7 @@ namespace Templar
 			{
 				"KEYWORD_EXPLOSIVE"
 			};
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
@@ -312,7 +311,7 @@ namespace Templar
 					"KEYWORD_EXPLOSIVE"
 				};
 				skillDef.cancelSprintingOnActivation = true;
-				LoadoutAPI.AddSkillDef(skillDef);
+
 				Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 				skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 				{
@@ -344,11 +343,11 @@ namespace Templar
 			skillDef.skillName = "TEMPLAR_SECONDARY_GRENADE_NAME";
 			skillDef.skillNameToken = "TEMPLAR_SECONDARY_GRENADE_NAME";
 			skillDef.cancelSprintingOnActivation = true;
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			component.secondary = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
 			skillFamily.variants = new SkillFamily.Variant[1];
-			LoadoutAPI.AddSkillFamily(skillFamily);
+
 			component.secondary.SetFieldValue("_skillFamily", skillFamily);
 			SkillFamily skillFamily2 = component.secondary.skillFamily;
 			skillFamily2.variants[0] = new SkillFamily.Variant
@@ -375,7 +374,7 @@ namespace Templar
 			skillDef.skillName = "TEMPLAR_SECONDARY_SHOTGUN_NAME";
 			skillDef.skillNameToken = "TEMPLAR_SECONDARY_SHOTGUN_NAME";
 			skillDef.cancelSprintingOnActivation = true;
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
@@ -406,11 +405,10 @@ namespace Templar
 			skillDef.skillName = "TEMPLAR_UTILITY_OVERDRIVE_NAME";
 			skillDef.skillNameToken = "TEMPLAR_UTILITY_OVERDRIVE_NAME";
 			skillDef.cancelSprintingOnActivation = false;
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			component.utility = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
 			skillFamily.variants = new SkillFamily.Variant[1];
-			LoadoutAPI.AddSkillFamily(skillFamily);
 			component.utility.SetFieldValue("_skillFamily", skillFamily);
 			SkillFamily skillFamily2 = component.utility.skillFamily;
 			skillFamily2.variants[0] = new SkillFamily.Variant
@@ -418,7 +416,7 @@ namespace Templar
 				skillDef = skillDef,
 				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
 			};
-			SkillDef skillDef2 = Resources.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponentInChildren<SkillLocator>().utility.skillFamily.variants[0].skillDef;
+			SkillDef skillDef2 = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponentInChildren<SkillLocator>().utility.skillFamily.variants[0].skillDef;
 			skillDef = ScriptableObject.CreateInstance<SkillDef>();
 			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarSidestep));
 			skillDef.activationStateMachineName = "Body";
@@ -438,7 +436,7 @@ namespace Templar
 			skillDef.skillName = "TEMPLAR_UTILITY_DODGE_NAME";
 			skillDef.skillNameToken = "TEMPLAR_UTILITY_DODGE_NAME";
 			skillDef.cancelSprintingOnActivation = false;
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
@@ -473,11 +471,11 @@ namespace Templar
 				"KEYWORD_EXPLOSIVE"
 			};
 			skillDef.cancelSprintingOnActivation = true;
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			component.special = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
 			skillFamily.variants = new SkillFamily.Variant[1];
-			LoadoutAPI.AddSkillFamily(skillFamily);
+
 			component.special.SetFieldValue("_skillFamily", skillFamily);
 			SkillFamily skillFamily2 = component.special.skillFamily;
 			skillFamily2.variants[0] = new SkillFamily.Variant
@@ -504,7 +502,7 @@ namespace Templar
 			skillDef.skillName = "TEMPLAR_SPECIAL_SWAP_NAME";
 			skillDef.skillNameToken = "TEMPLAR_SPECIAL_SWAP_NAME";
 			skillDef.cancelSprintingOnActivation = true;
-			LoadoutAPI.AddSkillDef(skillDef);
+
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
@@ -515,7 +513,7 @@ namespace Templar
 
 		internal static void CreateMaster()
 		{
-			Templar.doppelganger = Resources.Load<GameObject>("prefabs/charactermasters/commandomonstermaster").InstantiateClone("TemplarMonsterMaster", true, "C:TemplarClean.cs", "CreateMaster", 155);
+			Templar.doppelganger = LegacyResourcesAPI.Load<GameObject>("prefabs/charactermasters/commandomonstermaster").InstantiateClone("TemplarMonsterMaster", true, "C:TemplarClean.cs", "CreateMaster", 155);
 			Templar.doppelganger.GetComponent<CharacterMaster>().bodyPrefab = Templar.myCharacter;
 			Loader.masterPrefabs.Add(Templar.doppelganger);
 		}

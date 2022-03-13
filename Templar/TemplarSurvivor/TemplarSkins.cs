@@ -57,7 +57,7 @@ namespace Templar
             Material material = array[0].defaultMaterial;
             if (material)
             {
-                material = UnityEngine.Object.Instantiate<Material>(Resources.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().baseRendererInfos[0].defaultMaterial);
+                material = UnityEngine.Object.Instantiate<Material>(LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().baseRendererInfos[0].defaultMaterial);
                 array[0].defaultMaterial = material;
             }
             skinDefInfo.RendererInfos = array;

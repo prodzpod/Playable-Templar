@@ -9,10 +9,10 @@ namespace Templar
 	{
 		internal static void RegisterBuffs()
 		{
-			Buffs.TemplArmorBuff = Buffs.AddNewBuff("TemplArmorBuff", Resources.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), new Color(0.54f, 0.21f, 0.12f), false, false);
-			Buffs.TemplarstationaryArmorBuff = Buffs.AddNewBuff("TemplarstationaryArmorBuff", Resources.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), new Color(0.74f, 0.41f, 0.32f), false, false);
-			Buffs.TemplarigniteDebuff = Buffs.AddNewBuff("TemplarScorchedDebuff", Resources.Load<Sprite>("Textures/BuffIcons/texBuffPulverizeIcon"), new Color(0.3f, 0.3f, 0.3f), false, true);
-			Buffs.TemplarOverdriveBuff = Buffs.AddNewBuff("TemplarOverdriveBuff", Resources.Load<Sprite>("Textures/BuffIcons/texWarcryBuffIcon"), new Color(0.84f, 0.51f, 0.42f), false, false);
+			Buffs.TemplArmorBuff = Buffs.AddNewBuff("TemplArmorBuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), new Color(0.54f, 0.21f, 0.12f), false, false);
+			Buffs.TemplarstationaryArmorBuff = Buffs.AddNewBuff("TemplarstationaryArmorBuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), new Color(0.74f, 0.41f, 0.32f), false, false);
+			Buffs.TemplarigniteDebuff = Buffs.AddNewBuff("TemplarScorchedDebuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texBuffPulverizeIcon"), new Color(0.3f, 0.3f, 0.3f), false, true);
+			Buffs.TemplarOverdriveBuff = Buffs.AddNewBuff("TemplarOverdriveBuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texWarcryBuffIcon"), new Color(0.84f, 0.51f, 0.42f), false, false);
 		}
 
 		internal static BuffDef AddNewBuff(string buffName, Sprite buffIcon, Color buffColor, bool canStack, bool isDebuff)

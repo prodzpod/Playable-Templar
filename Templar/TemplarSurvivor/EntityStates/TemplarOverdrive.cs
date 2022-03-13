@@ -18,7 +18,7 @@ namespace Templar
 				base.characterBody.AddTimedBuff(Buffs.TemplarOverdriveBuff, 3f);
 			}
 			EffectManager.SimpleMuzzleFlash(FireTarball.effectPrefab, base.gameObject, "Root", false);
-			RoR2.EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosivePotExplosion"), new RoR2.EffectData
+			RoR2.EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosivePotExplosion"), new RoR2.EffectData
 			{
 				origin = base.characterBody.corePosition,
 				scale = 12f
@@ -50,7 +50,7 @@ namespace Templar
 				temporaryOverlay.animateShaderAlpha = true;
 				temporaryOverlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
 				temporaryOverlay.destroyComponentOnEnd = true;
-				temporaryOverlay.originalMaterial = Resources.Load<Material>("Materials/matClayGooDebuff");
+				temporaryOverlay.originalMaterial = LegacyResourcesAPI.Load<Material>("Materials/matClayGooDebuff");
 				temporaryOverlay.AddToCharacerModel(this.modelTransform.GetComponent<CharacterModel>());
 			}
 			Util.PlayAttackSpeedSound(FireTarball.attackSoundString, base.gameObject, 0.75f);

@@ -11,13 +11,13 @@ namespace Templar
 	{
 		internal static void ProjectileSetup()
 		{
-			Templar.templarGrenade = Resources.Load<GameObject>("Prefabs/Projectiles/CommandoGrenadeProjectile").InstantiateClone("TemplarGrenadeProjectile", true, "C:Lemurian.cs", "ProjectileSetup", 527);
+			Templar.templarGrenade = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/CommandoGrenadeProjectile").InstantiateClone("TemplarGrenadeProjectile", true, "C:Lemurian.cs", "ProjectileSetup", 527);
 			Templar.templarGrenade.GetComponent<ProjectileImpactExplosion>().blastDamageCoefficient = 4f;
 			Templar.templarGrenade.GetComponent<ProjectileImpactExplosion>().blastProcCoefficient = 0.8f;
 			Templar.templarGrenade.GetComponent<ProjectileImpactExplosion>().blastRadius = 12f;
 			Templar.templarGrenade.GetComponent<ProjectileImpactExplosion>().falloffModel = BlastAttack.FalloffModel.Linear;
 			Templar.templarGrenade.GetComponent<ProjectileImpactExplosion>().lifetimeAfterImpact = 0.15f;
-			Templar.templarGrenade.GetComponent<ProjectileImpactExplosion>().impactEffect = Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosivePotExplosion");
+			Templar.templarGrenade.GetComponent<ProjectileImpactExplosion>().impactEffect = LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosivePotExplosion");
 			Templar.templarGrenade.GetComponent<ProjectileDamage>().damageType = DamageType.ClayGoo;
 			GameObject gameObject = Assets.clayBombModel.InstantiateClone("TemplarBombModel", true, "C:Lemurian.cs", "ProjectileSetup", 541);
 			gameObject.AddComponent<ProjectileGhostController>();
@@ -26,7 +26,7 @@ namespace Templar
 			gameObject.AddComponent<NetworkIdentity>();
 			gameObject.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Models/TemplarBombModel", 500);
 			Templar.templarGrenade.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Projectiles/TemplarGrenadeProjectile", 48);
-			Templar.templarRocket = Resources.Load<GameObject>("Prefabs/Projectiles/LemurianBigFireball").InstantiateClone("TemplarRocketProjectile", true, "C:Lemurian.cs", "ProjectileSetup", 565);
+			Templar.templarRocket = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/LemurianBigFireball").InstantiateClone("TemplarRocketProjectile", true, "C:Lemurian.cs", "ProjectileSetup", 565);
 			Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().blastDamageCoefficient = 1f;
 			Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().blastRadius = 16f;
 			Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().blastProcCoefficient = 0.8f;

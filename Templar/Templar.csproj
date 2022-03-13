@@ -43,6 +43,9 @@
     <Reference Include="BetterUI">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\BepInEx\plugins\Qol\BetterUI.dll</HintPath>
     </Reference>
+    <Reference Include="KinematicCharacterController">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\KinematicCharacterController.dll</HintPath>
+    </Reference>
     <Reference Include="MMHook">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\BepInEx\plugins\R2API\MMHook.dll</HintPath>
     </Reference>
@@ -58,7 +61,10 @@
     </Reference>
     <Reference Include="R2API, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\R2API.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\BepInEx\plugins\Admin\R2API\R2API.dll</HintPath>
+    </Reference>
+    <Reference Include="RoR2BepInExPack">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\BepInEx\plugins\Admin\RoR2BepInExPack\RoR2BepInExPack.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\Libraries\UnityEngine.dll</HintPath>
@@ -71,9 +77,6 @@
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\Libraries\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>..\Libraries\UnityEngine.Networking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ParticleSystemModule">
       <HintPath>..\Libraries\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -125,6 +128,18 @@
   <ItemGroup>
     <EmbeddedResource Include="skillbundle" />
     <EmbeddedResource Include="templar" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.Core" Version="5.4.19" />
+    <PackageReference Include="RiskOfRain2.GameLibs" Version="1.2.1-r.0" />
+    <PackageReference Include="UnityEngine.Modules" Version="2021.2.14">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

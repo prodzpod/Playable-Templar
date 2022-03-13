@@ -22,27 +22,27 @@ namespace Templar
 			TemplarItemDisplays.itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
 			{
 				keyAsset = RoR2Content.Equipment.AffixRed,
-				displayRuleGroup = Resources.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixRed)
+				displayRuleGroup = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixRed)
 			});
 			TemplarItemDisplays.itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
 			{
 				keyAsset = RoR2Content.Equipment.AffixBlue,
-				displayRuleGroup = Resources.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixBlue)
+				displayRuleGroup = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixBlue)
 			});
 			TemplarItemDisplays.itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
 			{
 				keyAsset = RoR2Content.Equipment.AffixWhite,
-				displayRuleGroup = Resources.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixWhite)
+				displayRuleGroup = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixWhite)
 			});
 			TemplarItemDisplays.itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
 			{
 				keyAsset = RoR2Content.Equipment.AffixPoison,
-				displayRuleGroup = Resources.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixPoison)
+				displayRuleGroup = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixPoison)
 			});
 			TemplarItemDisplays.itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
 			{
 				keyAsset = RoR2Content.Equipment.AffixHaunted,
-				displayRuleGroup = Resources.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixHaunted)
+				displayRuleGroup = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().itemDisplayRuleSet.FindDisplayRuleGroup(RoR2Content.Equipment.AffixHaunted)
 			});
 			TemplarItemDisplays.itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
 			{
@@ -830,7 +830,7 @@ namespace Templar
 
 		internal static void PopulateDisplays()
 		{
-			ItemDisplayRuleSet itemDisplayRuleSet = Resources.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<ModelLocator>().modelTransform.GetComponent<CharacterModel>().itemDisplayRuleSet;
+			ItemDisplayRuleSet itemDisplayRuleSet = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponent<ModelLocator>().modelTransform.GetComponent<CharacterModel>().itemDisplayRuleSet;
 			ItemDisplayRuleSet.KeyAssetRuleGroup[] keyAssetRuleGroups = itemDisplayRuleSet.keyAssetRuleGroups;
 			for (int i = 0; i < keyAssetRuleGroups.Length; i++)
 			{

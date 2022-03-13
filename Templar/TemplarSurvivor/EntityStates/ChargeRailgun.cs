@@ -12,7 +12,7 @@ namespace Templar
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			base.characterBody.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/SMGCrosshair");
+			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SMGCrosshair");
 			this.minChargeDuration = 0.75f * (ChargeSpear.baseMinChargeDuration / this.attackSpeedStat);
 			this.chargeDuration = 0.75f * (ChargeSpear.baseChargeDuration / this.attackSpeedStat);
 			Util.PlaySound(MinigunSpinUp.sound, base.gameObject);
@@ -36,7 +36,7 @@ namespace Templar
 
 		public override void OnExit()
 		{
-			base.characterBody.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
+			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
 			bool flag = this.chargeInstance;
 			bool flag2 = flag;
 			if (flag2)

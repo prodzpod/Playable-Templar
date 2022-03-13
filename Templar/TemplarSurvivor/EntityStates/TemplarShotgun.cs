@@ -127,7 +127,7 @@ namespace Templar
 			return result;
 		}
 
-		public static GameObject tracerEffectPrefab = Resources.Load<GameObject>("Prefabs/Effects/Tracers/TracerCommandoBoost");
+		public static GameObject tracerEffectPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/Tracers/TracerCommandoBoost");
 
 		public static float damageCoefficient = Templar.blunderbussDamageCoefficient.Value;
 

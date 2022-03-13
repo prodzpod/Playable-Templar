@@ -115,7 +115,7 @@ namespace Templar
 		{
 			base.PlayCrossfade("Gesture, Additive", "BufferEmpty", 0.2f);
 			base.GetModelAnimator().SetBool("WeaponIsReady", false);
-			base.characterBody.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
+			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
 			base.OnExit();
 		}
 
@@ -139,13 +139,13 @@ namespace Templar
 
 		public static int currentWeapon;
 
-		public static GameObject crosshair1 = Resources.Load<GameObject>("prefabs/crosshair/BanditCrosshair");
+		public static GameObject crosshair1 = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/BanditCrosshair");
 
-		public static GameObject crosshair2 = Resources.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
+		public static GameObject crosshair2 = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
 
-		public static GameObject crosshair3 = Resources.Load<GameObject>("prefabs/crosshair/BanditCrosshair");
+		public static GameObject crosshair3 = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/BanditCrosshair");
 
-		public static GameObject crosshair4 = Resources.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
+		public static GameObject crosshair4 = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
 
 		private float duration;
 

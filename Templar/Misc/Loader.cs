@@ -35,6 +35,8 @@ namespace Templar
 			Templar.TemplarSetup();
 			TemplarItemDisplays.InitializeItemDisplays();
 			ContentManager.collectContentPackProviders += this.ContentManager_collectContentPackProviders;
+
+			RoR2Application.onLoad += AddItemDisplays;
 		}
 
 		public void ReadConfig()
@@ -85,7 +87,7 @@ namespace Templar
 			Templar.miniBazookaDamageCoefficient = base.Config.Bind<float>(new ConfigDefinition("8 - Bazooka Mk.2", "Damage"), 5f, new ConfigDescription("Bazooka Mk.2 damage", null, Array.Empty<object>()));
 		}
 
-		public void Start()
+		public static void AddItemDisplays()
 		{
 			TemplarItemDisplays.SetItemDisplays();
 		}
@@ -98,11 +100,9 @@ namespace Templar
 		public static bool IsBUDefined { get; private set; }
 
 		internal static List<GameObject> projectilePrefabs = new List<GameObject>();
-
 		internal static List<SurvivorDef> survivorDefs = new List<SurvivorDef>();
-
 		public static List<GameObject> bodyPrefabs = new List<GameObject>();
-
 		internal static List<GameObject> masterPrefabs = new List<GameObject>();
+		internal static List<Type> entityStates = new List<Type>();
 	}
 }

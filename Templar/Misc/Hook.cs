@@ -57,7 +57,7 @@ namespace Templar
 							temporaryOverlay.animateShaderAlpha = true;
 							temporaryOverlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
 							temporaryOverlay.destroyComponentOnEnd = true;
-							temporaryOverlay.originalMaterial = Resources.Load<Material>("Materials/matDoppelganger");
+							temporaryOverlay.originalMaterial = LegacyResourcesAPI.Load<Material>("Materials/matDoppelganger");
 							temporaryOverlay.AddToCharacerModel(modelTransform.GetComponent<RoR2.CharacterModel>());
 						}
 						RoR2.BlastAttack blastAttack = new RoR2.BlastAttack
@@ -90,7 +90,7 @@ namespace Templar
 							damageType = DamageType.BypassOneShotProtection
 						};
 						blastAttack2.Fire();
-						RoR2.EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/MagmaOrbExplosion"), new RoR2.EffectData
+						RoR2.EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/MagmaOrbExplosion"), new RoR2.EffectData
 						{
 							origin = self.transform.position,
 							scale = 16f

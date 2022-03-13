@@ -29,7 +29,7 @@ namespace Templar
 			base.OnExit();
 			base.PlayCrossfade("Gesture, Additive", "BufferEmpty", 0.2f);
 			base.GetModelAnimator().SetBool("WeaponIsReady", false);
-			base.characterBody.crosshairPrefab = Resources.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
+			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
 		}
 
 		public override void FixedUpdate()
