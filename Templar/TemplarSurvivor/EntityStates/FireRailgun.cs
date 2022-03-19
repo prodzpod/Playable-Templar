@@ -8,14 +8,14 @@ namespace Templar
 {
 	public class FireRailgun : GenericBulletBaseState
 	{
-		protected override void ModifyBullet(BulletAttack bulletAttack)
+		public override void ModifyBullet(BulletAttack bulletAttack)
 		{
 			base.ModifyBullet(bulletAttack);
 			bulletAttack.stopperMask = LayerIndex.world.mask;
 			bulletAttack.falloffModel = BulletAttack.FalloffModel.None;
 		}
 
-		protected override void FireBullet(Ray aimRay)
+		public override void FireBullet(Ray aimRay)
 		{
 			base.FireBullet(aimRay);
 			base.characterBody.SetSpreadBloom(0.2f, false);

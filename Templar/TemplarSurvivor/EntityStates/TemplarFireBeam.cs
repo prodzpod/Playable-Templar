@@ -73,7 +73,7 @@ namespace Templar
 		public override void OnExit()
 		{
 			base.OnExit();
-			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
+			base.characterBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
 			base.PlayCrossfade("Gesture, Additive", "BufferEmpty", 0.2f);
 			this.animator.SetBool("WeaponIsReady", false);
 		}

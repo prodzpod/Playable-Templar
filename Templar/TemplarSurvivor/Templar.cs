@@ -245,7 +245,6 @@ namespace Templar
 			{
 				"KEYWORD_EXPLOSIVE"
 			};
-			LoadoutAPI.AddSkillDef(skillDef);
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{

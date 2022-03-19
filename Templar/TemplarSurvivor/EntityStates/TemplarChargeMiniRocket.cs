@@ -17,7 +17,7 @@ namespace Templar
 			Transform modelTransform = base.GetModelTransform();
 			base.GetModelAnimator().SetBool("WeaponIsReady", true);
 			base.PlayCrossfade("Gesture, Additive", "FireMinigun", 0.2f);
-			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/ToolbotGrenadeLauncherCrosshair");
+			base.characterBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/ToolbotGrenadeLauncherCrosshair");
 			Util.PlayAttackSpeedSound(ChargeMegaFireball.attackString, base.gameObject, this.attackSpeedStat);
 			bool flag = modelTransform;
 			bool flag2 = flag;

@@ -24,8 +24,8 @@ namespace Templar
 			gameObject.transform.GetChild(0).localScale *= 0.5f;
 			Templar.templarGrenade.GetComponent<ProjectileController>().ghostPrefab = gameObject;
 			gameObject.AddComponent<NetworkIdentity>();
-			gameObject.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Models/TemplarBombModel", 500);
-			Templar.templarGrenade.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Projectiles/TemplarGrenadeProjectile", 48);
+			//gameObject.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Models/TemplarBombModel", 500);
+			//Templar.templarGrenade.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Projectiles/TemplarGrenadeProjectile", 48);
 			Templar.templarRocket = LegacyResourcesAPI.Load<GameObject>("Prefabs/Projectiles/LemurianBigFireball").InstantiateClone("TemplarRocketProjectile", true, "C:Lemurian.cs", "ProjectileSetup", 565);
 			Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().blastDamageCoefficient = 1f;
 			Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().blastRadius = 16f;
@@ -57,14 +57,14 @@ namespace Templar
 			{
 				Templar.templarRocketEffect.GetComponent<VFXAttributes>().vfxPriority = VFXAttributes.VFXPriority.Always;
 			}
-			EffectAPI.AddEffect(Templar.templarRocketEffect);
+			R2API.ContentAddition.AddEffect(Templar.templarRocketEffect);
 			Templar.templarRocket.GetComponent<ProjectileImpactExplosion>().impactEffect = Templar.templarRocketEffect;
 			Templar.templarRocket.GetComponent<ProjectileDamage>().damageType = DamageType.BypassOneShotProtection;
 			gameObject2.AddComponent<NetworkIdentity>();
-			gameObject2.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Models/TemplarMissileModel", 501);
-			Templar.templarRocket.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Projectiles/TemplarRocketProjectile", 44);
+			//gameObject2.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Models/TemplarMissileModel", 501);
+			//Templar.templarRocket.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Projectiles/TemplarRocketProjectile", 44);
 			Templar.templarRocketEffect.AddComponent<NetworkIdentity>();
-			Templar.templarRocketEffect.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/effects/TemplarRocketImpact", 45);
+			//Templar.templarRocketEffect.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/effects/TemplarRocketImpact", 45);
 			Loader.projectilePrefabs.Add(Templar.templarGrenade);
 			Loader.projectilePrefabs.Add(Templar.templarRocket);
 		}

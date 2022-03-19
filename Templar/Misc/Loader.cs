@@ -11,7 +11,7 @@ namespace Templar
 {
 	[BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.0.5")]
+	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.1.0")]
 	[BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)]
 	[R2APISubmoduleDependency(new string[]
 	{
@@ -104,5 +104,6 @@ namespace Templar
 		public static List<GameObject> bodyPrefabs = new List<GameObject>();
 		internal static List<GameObject> masterPrefabs = new List<GameObject>();
 		internal static List<Type> entityStates = new List<Type>();
+		
 	}
 }

@@ -10,7 +10,7 @@ namespace Templar
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
+			base.characterBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
 			this.duration = MinigunSpinDown.baseDuration * 0.1f / this.attackSpeedStat;
 			Util.PlayAttackSpeedSound(MinigunSpinDown.sound, base.gameObject, this.attackSpeedStat);
 			base.GetModelAnimator().SetBool("WeaponIsReady", false);

@@ -12,7 +12,7 @@ namespace Templar
 		{
 			base.OnEnter();
 			base.characterBody.SetSpreadBloom(2f, false);
-			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Crosshair/BanditCrosshair");
+			base.characterBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Crosshair/BanditCrosshair");
 			this.duration = MinigunSpinUp.baseDuration / this.attackSpeedStat;
 			Util.PlaySound(MinigunSpinUp.sound, base.gameObject);
 			base.GetModelAnimator().SetBool("WeaponIsReady", true);

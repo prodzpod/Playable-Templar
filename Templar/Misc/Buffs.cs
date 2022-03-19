@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Templar
 {
@@ -9,10 +10,10 @@ namespace Templar
 	{
 		internal static void RegisterBuffs()
 		{
-			Buffs.TemplArmorBuff = Buffs.AddNewBuff("TemplArmorBuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), new Color(0.54f, 0.21f, 0.12f), false, false);
-			Buffs.TemplarstationaryArmorBuff = Buffs.AddNewBuff("TemplarstationaryArmorBuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texBuffGenericShield"), new Color(0.74f, 0.41f, 0.32f), false, false);
-			Buffs.TemplarigniteDebuff = Buffs.AddNewBuff("TemplarScorchedDebuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texBuffPulverizeIcon"), new Color(0.3f, 0.3f, 0.3f), false, true);
-			Buffs.TemplarOverdriveBuff = Buffs.AddNewBuff("TemplarOverdriveBuff", LegacyResourcesAPI.Load<Sprite>("Textures/BuffIcons/texWarcryBuffIcon"), new Color(0.84f, 0.51f, 0.42f), false, false);
+			Buffs.TemplArmorBuff = Buffs.AddNewBuff("TemplArmorBuff", Addressables.LoadAssetAsync<BuffDef>("RoR2/Base/RoboBallBoss/bdEngiShield.asset").WaitForCompletion().iconSprite, new Color(0.54f, 0.21f, 0.12f), false, false);
+			Buffs.TemplarstationaryArmorBuff = Buffs.AddNewBuff("TemplarstationaryArmorBuff", Addressables.LoadAssetAsync<BuffDef>("RoR2/Base/RoboBallBoss/bdEngiShield.asset").WaitForCompletion().iconSprite, new Color(0.74f, 0.41f, 0.32f), false, false);
+			Buffs.TemplarigniteDebuff = Buffs.AddNewBuff("TemplarScorchedDebuff", Addressables.LoadAssetAsync<BuffDef>("RoR2/Base/ArmorReductionOnHit/bdPulverized.asset").WaitForCompletion().iconSprite, new Color(0.3f, 0.3f, 0.3f), false, true);
+			Buffs.TemplarOverdriveBuff = Buffs.AddNewBuff("TemplarOverdriveBuff", Addressables.LoadAssetAsync<BuffDef>("RoR2/Base/WarCryOnMultiKill/bdWarCryBuff.asset").WaitForCompletion().iconSprite, new Color(0.84f, 0.51f, 0.42f), false, false);
 		}
 
 		internal static BuffDef AddNewBuff(string buffName, Sprite buffIcon, Color buffColor, bool canStack, bool isDebuff)

@@ -13,7 +13,7 @@ namespace Templar
 			this.baseDuration = 0.5f;
 		}
 
-		protected override void AddDebuff(CharacterBody body)
+		public override void AddDebuff(CharacterBody body)
 		{
 			body.AddTimedBuff((BuffIndex)21, this.slowDuration * 3f);
 		}

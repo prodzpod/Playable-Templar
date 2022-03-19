@@ -19,7 +19,7 @@ namespace Templar
 			{
 				this.muzzleVfxTransform = UnityEngine.Object.Instantiate<GameObject>(MinigunFire.muzzleVfxPrefab, this.muzzleTransform).transform;
 			}
-			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
+			base.characterBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/StandardCrosshair");
 			this.baseFireRate = 1f / MinigunFire.baseFireInterval;
 			this.baseBulletsPerSecond = (float)MinigunFire.baseBulletCount * 2f * this.baseFireRate;
 			this.critEndTime = Run.FixedTimeStamp.negativeInfinity;

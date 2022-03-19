@@ -17,7 +17,7 @@ namespace Templar
 			this.animator = base.GetModelAnimator();
 			base.StartAimMode(this.duration + 2f, false);
 			this.animator.SetBool("WeaponIsReady", true);
-			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Crosshair/BanditCrosshair");
+			base.characterBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("Prefabs/Crosshair/BanditCrosshair");
 			this.chargePlayID = Util.PlayAttackSpeedSound(ChargeLaser.attackSoundString, base.gameObject, this.attackSpeedStat);
 			bool flag = modelTransform;
 			bool flag2 = flag;

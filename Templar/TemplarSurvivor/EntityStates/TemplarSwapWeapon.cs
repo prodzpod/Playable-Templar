@@ -69,7 +69,7 @@ namespace Templar
 			bool flag14 = flag13;
 			if (flag14)
 			{
-				base.characterBody.crosshairPrefab = TemplarSwapWeapon.crosshair1;
+				base.characterBody._defaultCrosshairPrefab = TemplarSwapWeapon.crosshair1;
 			}
 			else
 			{
@@ -77,7 +77,7 @@ namespace Templar
 				bool flag16 = flag15;
 				if (flag16)
 				{
-					base.characterBody.crosshairPrefab = TemplarSwapWeapon.crosshair2;
+					base.characterBody._defaultCrosshairPrefab = TemplarSwapWeapon.crosshair2;
 				}
 				else
 				{
@@ -85,7 +85,7 @@ namespace Templar
 					bool flag18 = flag17;
 					if (flag18)
 					{
-						base.characterBody.crosshairPrefab = TemplarSwapWeapon.crosshair3;
+						base.characterBody._defaultCrosshairPrefab = TemplarSwapWeapon.crosshair3;
 					}
 					else
 					{
@@ -93,7 +93,7 @@ namespace Templar
 						bool flag20 = flag19;
 						if (flag20)
 						{
-							base.characterBody.crosshairPrefab = TemplarSwapWeapon.crosshair4;
+							base.characterBody._defaultCrosshairPrefab = TemplarSwapWeapon.crosshair4;
 						}
 					}
 				}
@@ -115,7 +115,7 @@ namespace Templar
 		{
 			base.PlayCrossfade("Gesture, Additive", "BufferEmpty", 0.2f);
 			base.GetModelAnimator().SetBool("WeaponIsReady", false);
-			base.characterBody.crosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
+			base.characterBody._defaultCrosshairPrefab = LegacyResourcesAPI.Load<GameObject>("prefabs/crosshair/SimpleDotCrosshair");
 			base.OnExit();
 		}
 
