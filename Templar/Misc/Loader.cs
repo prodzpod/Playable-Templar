@@ -6,12 +6,13 @@ using RoR2.ContentManagement;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using RoR2.Skills;
 
 namespace Templar
 {
 	[BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
 	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.1.0")]
+	[BepInPlugin("com.Tymmey.Templar", "Templar", "1.1.1")]
 	[BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)]
 	[R2APISubmoduleDependency(new string[]
 	{
@@ -104,6 +105,9 @@ namespace Templar
 		public static List<GameObject> bodyPrefabs = new List<GameObject>();
 		internal static List<GameObject> masterPrefabs = new List<GameObject>();
 		internal static List<Type> entityStates = new List<Type>();
-		
+		internal static List<SkillDef> skillDefs = new List<SkillDef>();
+		internal static List<SkillFamily> skillFamilies = new List<SkillFamily>();
+
+
 	}
 }

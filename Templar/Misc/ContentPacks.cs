@@ -17,6 +17,9 @@ namespace Templar
 		public IEnumerator LoadStaticContentAsync(LoadStaticContentAsyncArgs args)
 		{
 			ContentPacks.contentPack.buffDefs.Add(Buffs.buffDefs.ToArray());
+
+			ContentPacks.contentPack.skillDefs.Add(Loader.skillDefs.ToArray());
+			ContentPacks.contentPack.skillFamilies.Add(Loader.skillFamilies.ToArray());
 			ContentPacks.contentPack.survivorDefs.Add(Loader.survivorDefs.ToArray());
 			ContentPacks.contentPack.bodyPrefabs.Add(Loader.bodyPrefabs.ToArray());
 			ContentPacks.contentPack.masterPrefabs.Add(Loader.masterPrefabs.ToArray());

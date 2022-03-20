@@ -163,13 +163,14 @@ namespace Templar
 		internal static void PrimarySetup()
 		{
 			SkillLocator component = Templar.myCharacter.GetComponent<SkillLocator>();
-			SkillDef skillDef = ScriptableObject.CreateInstance<SkillDef>();
+			SkillDef skillDef = SkillDef.CreateInstance<SkillDef>();
 			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarMinigunSpinUp));
 			skillDef.activationStateMachineName = "Weapon";
 			skillDef.baseMaxStock = 1;
 			skillDef.baseRechargeInterval = 0f;
 			skillDef.beginSkillCooldownOnSkillEnd = true;
 			skillDef.canceledFromSprinting = false;
+			skillDef.cancelSprintingOnActivation = true;
 			skillDef.fullRestockOnAssign = true;
 			skillDef.interruptPriority = InterruptPriority.Any;
 			skillDef.isCombatSkill = true;
@@ -185,7 +186,7 @@ namespace Templar
 			{
 				"KEYWORD_RAPIDFIRE"
 			};
-			skillDef.cancelSprintingOnActivation = true;
+
 
 			component.primary = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
@@ -198,79 +199,85 @@ namespace Templar
 				skillDef = skillDef,
 				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
 			};
-			skillDef = ScriptableObject.CreateInstance<SkillDef>();
-			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarRifleFire));
-			skillDef.activationStateMachineName = "Weapon";
-			skillDef.baseMaxStock = 1;
-			skillDef.baseRechargeInterval = 0f;
-			skillDef.beginSkillCooldownOnSkillEnd = true;
-			skillDef.canceledFromSprinting = true;
-			skillDef.fullRestockOnAssign = true;
-			skillDef.interruptPriority = InterruptPriority.Any;
-			skillDef.isCombatSkill = true;
-			skillDef.mustKeyPress = false;
-			skillDef.rechargeStock = 1;
-			skillDef.requiredStock = 1;
-			skillDef.stockToConsume = 1;
-			skillDef.icon = Assets.icon1b;
-			skillDef.skillDescriptionToken = "TEMPLAR_PRIMARY_PRECISEMINIGUN_DESCRIPTION";
-			skillDef.skillName = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
-			skillDef.skillNameToken = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
+
+			SkillDef skillDef2 = SkillDef.CreateInstance<SkillDef>();
+			skillDef2.activationState = new SerializableEntityStateType(typeof(TemplarRifleFire));
+			skillDef2.activationStateMachineName = "Weapon";
+			skillDef2.baseMaxStock = 1;
+			skillDef2.baseRechargeInterval = 0f;
+			skillDef2.beginSkillCooldownOnSkillEnd = true;
+			skillDef2.canceledFromSprinting = true;
+			skillDef2.cancelSprintingOnActivation = true;
+			skillDef2.fullRestockOnAssign = true;
+			skillDef2.interruptPriority = InterruptPriority.Any;
+			skillDef2.isCombatSkill = true;
+			skillDef2.mustKeyPress = false;
+			skillDef2.rechargeStock = 1;
+			skillDef2.requiredStock = 1;
+			skillDef2.stockToConsume = 1;
+			skillDef2.icon = Assets.icon1b;
+			skillDef2.skillDescriptionToken = "TEMPLAR_PRIMARY_PRECISEMINIGUN_DESCRIPTION";
+			skillDef2.skillName = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
+			skillDef2.skillNameToken = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
-				skillDef = skillDef,
-				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
+				skillDef = skillDef2,
+				viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
 			};
-			skillDef.cancelSprintingOnActivation = true;
-			skillDef = ScriptableObject.CreateInstance<SkillDef>();
-			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarChargeBeam));
-			skillDef.activationStateMachineName = "Weapon";
-			skillDef.baseMaxStock = 1;
-			skillDef.baseRechargeInterval = 0f;
-			skillDef.beginSkillCooldownOnSkillEnd = true;
-			skillDef.canceledFromSprinting = false;
-			skillDef.fullRestockOnAssign = true;
-			skillDef.interruptPriority = InterruptPriority.Any;
-			skillDef.isCombatSkill = true;
-			skillDef.mustKeyPress = false;
-			skillDef.rechargeStock = 1;
-			skillDef.requiredStock = 1;
-			skillDef.stockToConsume = 1;
-			skillDef.icon = Assets.icon1c;
-			skillDef.skillDescriptionToken = "TEMPLAR_PRIMARY_RAILGUN_DESCRIPTION";
-			skillDef.skillName = "TEMPLAR_PRIMARY_RAILGUN_NAME";
-			skillDef.skillNameToken = "TEMPLAR_PRIMARY_RAILGUN_NAME";
-			skillDef.keywordTokens = new string[]
+
+
+			SkillDef skillDef3 = SkillDef.CreateInstance<SkillDef>();
+			skillDef3.activationState = new SerializableEntityStateType(typeof(TemplarChargeBeam));
+			skillDef3.activationStateMachineName = "Weapon";
+			skillDef3.baseMaxStock = 1;
+			skillDef3.baseRechargeInterval = 0f;
+			skillDef3.beginSkillCooldownOnSkillEnd = true;
+			skillDef3.canceledFromSprinting = false;
+			skillDef3.cancelSprintingOnActivation = true;
+			skillDef3.fullRestockOnAssign = true;
+			skillDef3.interruptPriority = InterruptPriority.Any;
+			skillDef3.isCombatSkill = true;
+			skillDef3.mustKeyPress = false;
+			skillDef3.rechargeStock = 1;
+			skillDef3.requiredStock = 1;
+			skillDef3.stockToConsume = 1;
+			skillDef3.icon = Assets.icon1c;
+			skillDef3.skillDescriptionToken = "TEMPLAR_PRIMARY_RAILGUN_DESCRIPTION";
+			skillDef3.skillName = "TEMPLAR_PRIMARY_RAILGUN_NAME";
+			skillDef3.skillNameToken = "TEMPLAR_PRIMARY_RAILGUN_NAME";
+			skillDef3.keywordTokens = new string[]
 			{
 				"KEYWORD_EXPLOSIVE"
 			};
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
-				skillDef = skillDef,
-				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
+				skillDef = skillDef3,
+				viewableNode = new ViewablesCatalog.Node(skillDef3.skillNameToken, false, null)
 			};
-			skillDef.cancelSprintingOnActivation = true;
-			skillDef = ScriptableObject.CreateInstance<SkillDef>();
-			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarFlamethrower));
-			skillDef.activationStateMachineName = "Weapon";
-			skillDef.baseMaxStock = 1;
-			skillDef.baseRechargeInterval = 0f;
-			skillDef.beginSkillCooldownOnSkillEnd = true;
-			skillDef.canceledFromSprinting = false;
-			skillDef.fullRestockOnAssign = true;
-			skillDef.interruptPriority = InterruptPriority.Any;
-			skillDef.isCombatSkill = true;
-			skillDef.mustKeyPress = false;
-			skillDef.rechargeStock = 1;
-			skillDef.requiredStock = 1;
-			skillDef.stockToConsume = 1;
-			skillDef.icon = Assets.icon1d;
-			skillDef.skillDescriptionToken = "TEMPLAR_PRIMARY_FLAMETHROWER_DESCRIPTION";
-			skillDef.skillName = "TEMPLAR_PRIMARY_FLAMETHROWER_NAME";
-			skillDef.skillNameToken = "TEMPLAR_PRIMARY_FLAMETHROWER_NAME";
-			skillDef.keywordTokens = new string[]
+
+
+			SkillDef skillDef4 = SkillDef.CreateInstance<SkillDef>();
+			skillDef4.activationState = new SerializableEntityStateType(typeof(TemplarFlamethrower));
+			skillDef4.activationStateMachineName = "Weapon";
+			skillDef4.baseMaxStock = 1;
+			skillDef4.baseRechargeInterval = 0f;
+			skillDef4.beginSkillCooldownOnSkillEnd = true;
+			skillDef4.canceledFromSprinting = false;
+			skillDef4.cancelSprintingOnActivation = true;
+			skillDef4.fullRestockOnAssign = true;
+			skillDef4.interruptPriority = InterruptPriority.Any;
+			skillDef4.isCombatSkill = true;
+			skillDef4.mustKeyPress = false;
+			skillDef4.rechargeStock = 1;
+			skillDef4.requiredStock = 1;
+			skillDef4.stockToConsume = 1;
+			skillDef4.icon = Assets.icon1d;
+			skillDef4.skillDescriptionToken = "TEMPLAR_PRIMARY_FLAMETHROWER_DESCRIPTION";
+			skillDef4.skillName = "TEMPLAR_PRIMARY_FLAMETHROWER_NAME";
+			skillDef4.skillNameToken = "TEMPLAR_PRIMARY_FLAMETHROWER_NAME";
+			skillDef4.keywordTokens = new string[]
 			{
 				"KEYWORD_EXPLOSIVE"
 			};
@@ -278,58 +285,77 @@ namespace Templar
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
-				skillDef = skillDef,
-				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
+				skillDef = skillDef4,
+				viewableNode = new ViewablesCatalog.Node(skillDef4.skillNameToken, false, null)
 			};
+			
 			bool value = Templar.bazookaGoBoom.Value;
 			bool flag = value;
 			if (flag)
 			{
 				LanguageAPI.Add("TEMPLAR_PRIMARY_BAZOOKA_NAME", "Bazooka Mk. 2");
 				LanguageAPI.Add("TEMPLAR_PRIMARY_BAZOOKA_DESCRIPTION", "<style=cIsDamage>Explosive</style>. Fire a <style=cIsUtility>rocket</style>, dealing <style=cIsDamage>" + (Templar.miniBazookaDamageCoefficient.Value * 100f).ToString() + "% damage</style>.");
-				skillDef = ScriptableObject.CreateInstance<SkillDef>();
-				skillDef.activationState = new SerializableEntityStateType(typeof(TemplarChargeMiniRocket));
-				skillDef.activationStateMachineName = "Weapon";
-				skillDef.baseMaxStock = 1;
-				skillDef.baseRechargeInterval = 0.1f;
-				skillDef.beginSkillCooldownOnSkillEnd = true;
-				skillDef.canceledFromSprinting = false;
-				skillDef.fullRestockOnAssign = true;
-				skillDef.interruptPriority = InterruptPriority.Any;
-				skillDef.isCombatSkill = true;
-				skillDef.mustKeyPress = false;
-				skillDef.rechargeStock = 1;
-				skillDef.requiredStock = 1;
-				skillDef.stockToConsume = 1;
-				skillDef.icon = Assets.icon4;
-				skillDef.skillDescriptionToken = "TEMPLAR_PRIMARY_BAZOOKA_DESCRIPTION";
-				skillDef.skillName = "TEMPLAR_PRIMARY_BAZOOKA_NAME";
-				skillDef.skillNameToken = "TEMPLAR_PRIMARY_BAZOOKA_NAME";
-				skillDef.keywordTokens = new string[]
+				SkillDef skillDef5 = SkillDef.CreateInstance<SkillDef>();
+				skillDef5.activationState = new SerializableEntityStateType(typeof(TemplarChargeMiniRocket));
+				skillDef5.activationStateMachineName = "Weapon";
+				skillDef5.baseMaxStock = 1;
+				skillDef5.baseRechargeInterval = 0.1f;
+				skillDef5.beginSkillCooldownOnSkillEnd = true;
+				skillDef5.canceledFromSprinting = false;
+				skillDef5.fullRestockOnAssign = true;
+				skillDef5.interruptPriority = InterruptPriority.Any;
+				skillDef5.isCombatSkill = true;
+				skillDef5.mustKeyPress = false;
+				skillDef5.rechargeStock = 1;
+				skillDef5.requiredStock = 1;
+				skillDef5.stockToConsume = 1;
+				skillDef5.icon = Assets.icon4;
+				skillDef5.skillDescriptionToken = "TEMPLAR_PRIMARY_BAZOOKA_DESCRIPTION";
+				skillDef5.skillName = "TEMPLAR_PRIMARY_BAZOOKA_NAME";
+				skillDef5.skillNameToken = "TEMPLAR_PRIMARY_BAZOOKA_NAME";
+				skillDef5.keywordTokens = new string[]
 				{
 					"KEYWORD_EXPLOSIVE"
 				};
-				skillDef.cancelSprintingOnActivation = true;
+				skillDef5.cancelSprintingOnActivation = true;
 
 				Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 				skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 				{
-					skillDef = skillDef,
-					viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
+					skillDef = skillDef5,
+					viewableNode = new ViewablesCatalog.Node(skillDef5.skillNameToken, false, null)
 				};
+				Loader.entityStates.Add(typeof(TemplarChargeMiniRocket));
+				Loader.skillDefs.Add(skillDef5);
 			}
+
+
+			Loader.entityStates.Add(typeof(TemplarMinigunSpinUp));
+			Loader.entityStates.Add(typeof(TemplarRifleFire));
+			Loader.entityStates.Add(typeof(TemplarChargeBeam));
+			Loader.entityStates.Add(typeof(TemplarFlamethrower));
+
+			Loader.skillDefs.Add(skillDef);
+			Loader.skillDefs.Add(skillDef2);
+			Loader.skillDefs.Add(skillDef3);
+			Loader.skillDefs.Add(skillDef4);
+
+
+
+
 		}
 
 		internal static void SecondarySetup()
 		{
 			SkillLocator component = Templar.myCharacter.GetComponent<SkillLocator>();
-			SkillDef skillDef = ScriptableObject.CreateInstance<SkillDef>();
+			SkillDef skillDef = SkillDef.CreateInstance<SkillDef>();
 			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarThrowClaybomb));
 			skillDef.activationStateMachineName = "Weapon";
 			skillDef.baseMaxStock = Templar.clayGrenadeStock.Value;
 			skillDef.baseRechargeInterval = Templar.clayGrenadeCooldown.Value;
 			skillDef.beginSkillCooldownOnSkillEnd = false;
 			skillDef.canceledFromSprinting = false;
+			skillDef.cancelSprintingOnActivation = true;
 			skillDef.fullRestockOnAssign = true;
 			skillDef.interruptPriority = InterruptPriority.Skill;
 			skillDef.isCombatSkill = true;
@@ -341,7 +367,6 @@ namespace Templar
 			skillDef.skillDescriptionToken = "TEMPLAR_SECONDARY_GRENADE_DESCRIPTION";
 			skillDef.skillName = "TEMPLAR_SECONDARY_GRENADE_NAME";
 			skillDef.skillNameToken = "TEMPLAR_SECONDARY_GRENADE_NAME";
-			skillDef.cancelSprintingOnActivation = true;
 
 			component.secondary = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
@@ -354,44 +379,52 @@ namespace Templar
 				skillDef = skillDef,
 				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
 			};
-			skillDef = ScriptableObject.CreateInstance<SkillDef>();
-			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarShotgun));
-			skillDef.activationStateMachineName = "Weapon";
-			skillDef.baseMaxStock = Templar.blunderbussStock.Value;
-			skillDef.baseRechargeInterval = Templar.blunderbussCooldown.Value;
-			skillDef.beginSkillCooldownOnSkillEnd = false;
-			skillDef.canceledFromSprinting = false;
-			skillDef.fullRestockOnAssign = true;
-			skillDef.interruptPriority = InterruptPriority.Skill;
-			skillDef.isCombatSkill = true;
-			skillDef.mustKeyPress = true;
-			skillDef.rechargeStock = 1;
-			skillDef.requiredStock = 1;
-			skillDef.stockToConsume = 1;
-			skillDef.icon = Assets.icon2b;
-			skillDef.skillDescriptionToken = "TEMPLAR_SECONDARY_SHOTGUN_DESCRIPTION";
-			skillDef.skillName = "TEMPLAR_SECONDARY_SHOTGUN_NAME";
-			skillDef.skillNameToken = "TEMPLAR_SECONDARY_SHOTGUN_NAME";
-			skillDef.cancelSprintingOnActivation = true;
+			SkillDef skillDef2 = SkillDef.CreateInstance<SkillDef>();
+			skillDef2.activationState = new SerializableEntityStateType(typeof(TemplarShotgun));
+			skillDef2.activationStateMachineName = "Weapon";
+			skillDef2.baseMaxStock = Templar.blunderbussStock.Value;
+			skillDef2.baseRechargeInterval = Templar.blunderbussCooldown.Value;
+			skillDef2.beginSkillCooldownOnSkillEnd = false;
+			skillDef2.canceledFromSprinting = false;
+			skillDef2.cancelSprintingOnActivation = true;
+			skillDef2.fullRestockOnAssign = true;
+			skillDef2.interruptPriority = InterruptPriority.Skill;
+			skillDef2.isCombatSkill = true;
+			skillDef2.mustKeyPress = true;
+			skillDef2.rechargeStock = 1;
+			skillDef2.requiredStock = 1;
+			skillDef2.stockToConsume = 1;
+			skillDef2.icon = Assets.icon2b;
+			skillDef2.skillDescriptionToken = "TEMPLAR_SECONDARY_SHOTGUN_DESCRIPTION";
+			skillDef2.skillName = "TEMPLAR_SECONDARY_SHOTGUN_NAME";
+			skillDef2.skillNameToken = "TEMPLAR_SECONDARY_SHOTGUN_NAME";
 
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
-				skillDef = skillDef,
-				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
+				skillDef = skillDef2,
+				viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
 			};
+
+			Loader.entityStates.Add(typeof(TemplarThrowClaybomb));
+			Loader.entityStates.Add(typeof(TemplarShotgun));
+
+			Loader.skillDefs.Add(skillDef);
+			Loader.skillDefs.Add(skillDef2);
+
 		}
 
 		internal static void UtilitySetup()
 		{
 			SkillLocator component = Templar.myCharacter.GetComponent<SkillLocator>();
-			SkillDef skillDef = ScriptableObject.CreateInstance<SkillDef>();
+			SkillDef skillDef = SkillDef.CreateInstance<SkillDef>();
 			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarOverdrive));
 			skillDef.activationStateMachineName = "Body";
 			skillDef.baseMaxStock = Templar.overdriveStock.Value;
 			skillDef.baseRechargeInterval = Templar.overdriveCooldown.Value;
 			skillDef.beginSkillCooldownOnSkillEnd = false;
 			skillDef.canceledFromSprinting = false;
+			skillDef.cancelSprintingOnActivation = false;
 			skillDef.fullRestockOnAssign = true;
 			skillDef.interruptPriority = InterruptPriority.PrioritySkill;
 			skillDef.isCombatSkill = true;
@@ -403,7 +436,6 @@ namespace Templar
 			skillDef.skillDescriptionToken = "TEMPLAR_UTILITY_OVERDRIVE_DESCRIPTION";
 			skillDef.skillName = "TEMPLAR_UTILITY_OVERDRIVE_NAME";
 			skillDef.skillNameToken = "TEMPLAR_UTILITY_OVERDRIVE_NAME";
-			skillDef.cancelSprintingOnActivation = false;
 
 			component.utility = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
@@ -416,44 +448,51 @@ namespace Templar
 				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
 			};
 			SkillDef skillDef2 = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/CommandoBody").GetComponentInChildren<SkillLocator>().utility.skillFamily.variants[0].skillDef;
-			skillDef = ScriptableObject.CreateInstance<SkillDef>();
-			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarSidestep));
-			skillDef.activationStateMachineName = "Body";
-			skillDef.baseRechargeInterval = Templar.dashCooldown.Value;
-			skillDef.baseMaxStock = Templar.dashStock.Value;
-			skillDef.beginSkillCooldownOnSkillEnd = skillDef2.beginSkillCooldownOnSkillEnd;
-			skillDef.canceledFromSprinting = false;
-			skillDef.fullRestockOnAssign = skillDef2.fullRestockOnAssign;
-			skillDef.interruptPriority = skillDef2.interruptPriority;
-			skillDef.isCombatSkill = true;
-			skillDef.mustKeyPress = skillDef2.mustKeyPress;
-			skillDef.rechargeStock = skillDef2.rechargeStock;
-			skillDef.requiredStock = skillDef2.requiredStock;
-			skillDef.stockToConsume = skillDef2.stockToConsume;
-			skillDef.icon = Assets.icon3b;
-			skillDef.skillDescriptionToken = "TEMPLAR_UTILITY_DODGE_DESCRIPTION";
-			skillDef.skillName = "TEMPLAR_UTILITY_DODGE_NAME";
-			skillDef.skillNameToken = "TEMPLAR_UTILITY_DODGE_NAME";
-			skillDef.cancelSprintingOnActivation = false;
+			skillDef2 = SkillDef.CreateInstance<SkillDef>();
+			skillDef2.activationState = new SerializableEntityStateType(typeof(TemplarSidestep));
+			skillDef2.activationStateMachineName = "Body";
+			skillDef2.baseRechargeInterval = Templar.dashCooldown.Value;
+			skillDef2.baseMaxStock = Templar.dashStock.Value;
+			skillDef2.beginSkillCooldownOnSkillEnd = skillDef2.beginSkillCooldownOnSkillEnd;
+			skillDef2.canceledFromSprinting = false;
+			skillDef2.cancelSprintingOnActivation = false;
+			skillDef2.fullRestockOnAssign = skillDef2.fullRestockOnAssign;
+			skillDef2.interruptPriority = skillDef2.interruptPriority;
+			skillDef2.isCombatSkill = true;
+			skillDef2.mustKeyPress = skillDef2.mustKeyPress;
+			skillDef2.rechargeStock = skillDef2.rechargeStock;
+			skillDef2.requiredStock = skillDef2.requiredStock;
+			skillDef2.stockToConsume = skillDef2.stockToConsume;
+			skillDef2.icon = Assets.icon3b;
+			skillDef2.skillDescriptionToken = "TEMPLAR_UTILITY_DODGE_DESCRIPTION";
+			skillDef2.skillName = "TEMPLAR_UTILITY_DODGE_NAME";
+			skillDef2.skillNameToken = "TEMPLAR_UTILITY_DODGE_NAME";
 
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
-				skillDef = skillDef,
-				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
+				skillDef = skillDef2,
+				viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
 			};
+
+			Loader.entityStates.Add(typeof(TemplarOverdrive));
+			Loader.entityStates.Add(typeof(TemplarSidestep));
+
+			Loader.skillDefs.Add(skillDef);
+			Loader.skillDefs.Add(skillDef2);
 		}
 
 		internal static void SpecialSetup()
 		{
 			SkillLocator component = Templar.myCharacter.GetComponent<SkillLocator>();
-			SkillDef skillDef = ScriptableObject.CreateInstance<SkillDef>();
+			SkillDef skillDef = SkillDef.CreateInstance<SkillDef>();
 			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarChargeRocket));
 			skillDef.activationStateMachineName = "Weapon";
 			skillDef.baseMaxStock = Templar.bazookaStock.Value;
 			skillDef.baseRechargeInterval = Templar.bazookaCooldown.Value;
 			skillDef.beginSkillCooldownOnSkillEnd = true;
 			skillDef.canceledFromSprinting = false;
+			skillDef.cancelSprintingOnActivation = true;
 			skillDef.fullRestockOnAssign = true;
 			skillDef.interruptPriority = InterruptPriority.PrioritySkill;
 			skillDef.isCombatSkill = true;
@@ -469,7 +508,7 @@ namespace Templar
 			{
 				"KEYWORD_EXPLOSIVE"
 			};
-			skillDef.cancelSprintingOnActivation = true;
+
 
 			component.special = Templar.myCharacter.AddComponent<GenericSkill>();
 			SkillFamily skillFamily = ScriptableObject.CreateInstance<SkillFamily>();
@@ -482,32 +521,39 @@ namespace Templar
 				skillDef = skillDef,
 				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
 			};
-			skillDef = ScriptableObject.CreateInstance<SkillDef>();
-			skillDef.activationState = new SerializableEntityStateType(typeof(TemplarSwapWeapon));
-			skillDef.activationStateMachineName = "Weapon";
-			skillDef.baseMaxStock = 1;
-			skillDef.baseRechargeInterval = 0.1f;
-			skillDef.beginSkillCooldownOnSkillEnd = true;
-			skillDef.canceledFromSprinting = false;
-			skillDef.fullRestockOnAssign = true;
-			skillDef.interruptPriority = InterruptPriority.PrioritySkill;
-			skillDef.isCombatSkill = false;
-			skillDef.mustKeyPress = false;
-			skillDef.rechargeStock = 1;
-			skillDef.requiredStock = 1;
-			skillDef.stockToConsume = 1;
-			skillDef.icon = Assets.icon4b;
-			skillDef.skillDescriptionToken = "TEMPLAR_SPECIAL_SWAP_DESCRIPTION";
-			skillDef.skillName = "TEMPLAR_SPECIAL_SWAP_NAME";
-			skillDef.skillNameToken = "TEMPLAR_SPECIAL_SWAP_NAME";
-			skillDef.cancelSprintingOnActivation = true;
+
+			SkillDef skillDef2 = SkillDef.CreateInstance<SkillDef>();
+			skillDef2.activationState = new SerializableEntityStateType(typeof(TemplarSwapWeapon));
+			skillDef2.activationStateMachineName = "Weapon";
+			skillDef2.baseMaxStock = 1;
+			skillDef2.baseRechargeInterval = 0.1f;
+			skillDef2.beginSkillCooldownOnSkillEnd = true;
+			skillDef2.canceledFromSprinting = false;
+			skillDef2.cancelSprintingOnActivation = true;
+			skillDef2.fullRestockOnAssign = true;
+			skillDef2.interruptPriority = InterruptPriority.PrioritySkill;
+			skillDef2.isCombatSkill = false;
+			skillDef2.mustKeyPress = false;
+			skillDef2.rechargeStock = 1;
+			skillDef2.requiredStock = 1;
+			skillDef2.stockToConsume = 1;
+			skillDef2.icon = Assets.icon4b;
+			skillDef2.skillDescriptionToken = "TEMPLAR_SPECIAL_SWAP_DESCRIPTION";
+			skillDef2.skillName = "TEMPLAR_SPECIAL_SWAP_NAME";
+			skillDef2.skillNameToken = "TEMPLAR_SPECIAL_SWAP_NAME";
 
 			Array.Resize<SkillFamily.Variant>(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
 			skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
 			{
-				skillDef = skillDef,
-				viewableNode = new ViewablesCatalog.Node(skillDef.skillNameToken, false, null)
+				skillDef = skillDef2,
+				viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
 			};
+
+			Loader.entityStates.Add(typeof(TemplarChargeRocket));
+			Loader.entityStates.Add(typeof(TemplarSwapWeapon));
+
+			Loader.skillDefs.Add(skillDef);
+			Loader.skillDefs.Add(skillDef2);
 		}
 
 		internal static void CreateMaster()
