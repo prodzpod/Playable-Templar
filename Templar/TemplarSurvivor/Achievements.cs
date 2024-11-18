@@ -98,6 +98,7 @@ namespace Templar.TemplarSurvivor
         {
             SkinDef def = null;
             foreach (var skin in SkinCatalog.allSkinDefs) if (skin.name == skinName) def = skin;
+            if (def == null) return;
             UnlockableDef unlockableDef = unlockables["Skins." + name];
             Main.Log.LogDebug("Fetched Skin Unlockable Skins." + name);
             unlockableDef.nameToken = def.nameToken;

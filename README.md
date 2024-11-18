@@ -34,6 +34,9 @@ His special, Bazooka, fires a rocket that deals massive damage in a huge radius 
 - Railgun and Flamethrower don't ignite tar for clients
 
 ## Changelog
+`1.2.1`
+- fixed crash when templarskins was off but achievements were on
+
 `1.2.0`
 - ported all contents from templarskins (recolors disabled by default)
 
