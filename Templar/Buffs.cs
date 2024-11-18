@@ -39,6 +39,6 @@ namespace Templar
 
         internal static readonly Color CHAR_COLOR2 = new(0.784313738f, 0.294117659f, 0.05882353f);
 
-        internal static List<BuffDef> buffDefs = new();
+        internal static List<BuffDef> buffDefs = [];
     }
 }

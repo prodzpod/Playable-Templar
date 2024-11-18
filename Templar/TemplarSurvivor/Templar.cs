@@ -1,5 +1,4 @@
-﻿using BepInEx.Bootstrap;
-using BepInEx.Configuration;
+﻿using BepInEx.Configuration;
 using EntityStates;
 using EntityStates.ClayBruiserMonster;
 using KinematicCharacterController;
@@ -9,6 +8,7 @@ using RoR2;
 using RoR2.Skills;
 using System;
 using System.Collections;
+using Templar.TemplarSurvivor;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Rendering;
@@ -54,8 +54,8 @@ namespace Templar
             gameObject2.transform.localPosition = new Vector3(0f, -0.24f, 0f);
             MeshRenderer componentInChildren2 = gameObject2.GetComponentInChildren<MeshRenderer>();
             CharacterModel.RendererInfo[] baseRendererInfos = myCharacter.GetComponentInChildren<CharacterModel>().baseRendererInfos;
-            CharacterModel.RendererInfo[] baseRendererInfos2 = new CharacterModel.RendererInfo[]
-            {
+            CharacterModel.RendererInfo[] baseRendererInfos2 =
+            [
                 baseRendererInfos[0],
                 baseRendererInfos[1],
                 baseRendererInfos[2],
@@ -68,7 +68,7 @@ namespace Templar
                     defaultShadowCastingMode = ShadowCastingMode.On,
                     ignoreOverlays = false
                 }
-            };
+            ];
             myCharacter.GetComponentInChildren<CharacterModel>().baseRendererInfos = baseRendererInfos2;
             CharacterCameraParams TemplarCam = ScriptableObject.CreateInstance<CharacterCameraParams>();
             TemplarCam.name = "TemplarCam";
@@ -113,8 +113,8 @@ namespace Templar
             survivorDef.displayPrefab = characterDisplay;
             survivorDef.outroFlavorToken = "Templar_ENDING";
             survivorDef.desiredSortPosition = 16f;
-            Loader.survivorDefs.Add(survivorDef);
-            Loader.bodyPrefabs.Add(myCharacter);
+            Main.survivorDefs.Add(survivorDef);
+            Main.bodyPrefabs.Add(myCharacter);
         }
 
         internal static void SkillSetup()
@@ -124,32 +124,43 @@ namespace Templar
             {
                 UnityEngine.Object.DestroyImmediate(componentsInChildren[i]);
             }
-            myCharacter.GetComponent<SkillLocator>();
+            SkillLocator component = myCharacter.GetComponent<SkillLocator>();
             PrimarySetup();
             SecondarySetup();
             UtilitySetup();
             SpecialSetup();
             PassiveSetup();
-            Loader.entityStates.Add(typeof(TemplarChargeMiniRocket));
-            Loader.entityStates.Add(typeof(TemplarChargeRocket));
-            Loader.entityStates.Add(typeof(TemplarFireMiniRocket));
-            Loader.entityStates.Add(typeof(TemplarFireRocket));
-            Loader.entityStates.Add(typeof(TemplarFireSonicBoom));
-            Loader.entityStates.Add(typeof(TemplarMinigunFire));
-            Loader.entityStates.Add(typeof(TemplarMinigunSpinDown));
-            Loader.entityStates.Add(typeof(TemplarMinigunSpinUp));
-            Loader.entityStates.Add(typeof(TemplarMinigunState));
-            Loader.entityStates.Add(typeof(TemplarRifleFire));
-            Loader.entityStates.Add(typeof(TemplarRifleSpinDown));
-            Loader.entityStates.Add(typeof(TemplarRifleState));
-            Loader.entityStates.Add(typeof(TemplarShotgun));
-            Loader.entityStates.Add(typeof(TemplarSidestep));
-            Loader.entityStates.Add(typeof(TemplarSwapWeapon));
-            Loader.entityStates.Add(typeof(TemplarThrowClaybomb));
-            Loader.entityStates.Add(typeof(TemplarChargeBeam));
-            Loader.entityStates.Add(typeof(TemplarFireBeam));
-            Loader.entityStates.Add(typeof(TemplarFlamethrower));
-            Loader.entityStates.Add(typeof(TemplarOverdrive));
+            Main.entityStates.Add(typeof(TemplarChargeMiniRocket));
+            Main.entityStates.Add(typeof(TemplarChargeRocket));
+            Main.entityStates.Add(typeof(TemplarFireMiniRocket));
+            Main.entityStates.Add(typeof(TemplarFireRocket));
+            Main.entityStates.Add(typeof(TemplarFireSonicBoom));
+            Main.entityStates.Add(typeof(TemplarMinigunFire));
+            Main.entityStates.Add(typeof(TemplarMinigunSpinDown));
+            Main.entityStates.Add(typeof(TemplarMinigunSpinUp));
+            Main.entityStates.Add(typeof(TemplarMinigunState));
+            Main.entityStates.Add(typeof(TemplarRifleFire));
+            Main.entityStates.Add(typeof(TemplarRifleSpinDown));
+            Main.entityStates.Add(typeof(TemplarRifleState));
+            Main.entityStates.Add(typeof(TemplarShotgun));
+            Main.entityStates.Add(typeof(TemplarSidestep));
+            Main.entityStates.Add(typeof(TemplarSwapWeapon));
+            Main.entityStates.Add(typeof(TemplarThrowClaybomb));
+            Main.entityStates.Add(typeof(TemplarChargeBeam));
+            Main.entityStates.Add(typeof(TemplarFireBeam));
+            Main.entityStates.Add(typeof(TemplarFlamethrower));
+            Main.entityStates.Add(typeof(TemplarOverdrive));
+            ContentAddition.AddSkillFamily(component.primary.skillFamily);
+            ContentAddition.AddSkillFamily(component.secondary.skillFamily);
+            ContentAddition.AddSkillFamily(component.utility.skillFamily);
+            ContentAddition.AddSkillFamily(component.special.skillFamily);
+            CharacterBody body = myCharacter.GetComponent<CharacterBody>();
+            body.portraitIcon = Assets.TemplarSkins.LoadAsset<Sprite>("Assets/texSurvivorTemplar.png").texture;
+            body.baseNameToken = "TEMPLAR_SURVIVOR_NAME";
+            body.subtitleNameToken = "TEMPLAR_SURVIVOR_SUBTITLE";
+            TemplarPrefab.GetComponent<DeathRewards>().logUnlockableDef = null;
+            if (EnableMalignantOrigins.Value) MalignantOrigins.Patch();
+            if (EnableUnlocks.Value) Achievements.Patch();
         }
 
         internal static void PrimarySetup()
@@ -174,10 +185,10 @@ namespace Templar
             skillDef.skillDescriptionToken = "TEMPLAR_PRIMARY_MINIGUN_DESCRIPTION";
             skillDef.skillName = "TEMPLAR_PRIMARY_MINIGUN_NAME";
             skillDef.skillNameToken = "TEMPLAR_PRIMARY_MINIGUN_NAME";
-            skillDef.keywordTokens = new string[]
-            {
+            skillDef.keywordTokens =
+            [
                 "KEYWORD_RAPIDFIRE"
-            };
+            ];
 
 
             component.primary = myCharacter.AddComponent<GenericSkill>();
@@ -212,7 +223,7 @@ namespace Templar
             skillDef2.skillName = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
             skillDef2.skillNameToken = "TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME";
             Array.Resize(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
-            skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
+            skillFamily2.variants[^1] = new SkillFamily.Variant
             {
                 skillDef = skillDef2,
                 viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
@@ -238,12 +249,12 @@ namespace Templar
             skillDef3.skillDescriptionToken = "TEMPLAR_PRIMARY_RAILGUN_DESCRIPTION";
             skillDef3.skillName = "TEMPLAR_PRIMARY_RAILGUN_NAME";
             skillDef3.skillNameToken = "TEMPLAR_PRIMARY_RAILGUN_NAME";
-            skillDef3.keywordTokens = new string[]
-            {
+            skillDef3.keywordTokens =
+            [
                 "KEYWORD_EXPLOSIVE"
-            };
+            ];
             Array.Resize(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
-            skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
+            skillFamily2.variants[^1] = new SkillFamily.Variant
             {
                 skillDef = skillDef3,
                 viewableNode = new ViewablesCatalog.Node(skillDef3.skillNameToken, false, null)
@@ -269,13 +280,13 @@ namespace Templar
             skillDef4.skillDescriptionToken = "TEMPLAR_PRIMARY_FLAMETHROWER_DESCRIPTION";
             skillDef4.skillName = "TEMPLAR_PRIMARY_FLAMETHROWER_NAME";
             skillDef4.skillNameToken = "TEMPLAR_PRIMARY_FLAMETHROWER_NAME";
-            skillDef4.keywordTokens = new string[]
-            {
+            skillDef4.keywordTokens =
+            [
                 "KEYWORD_EXPLOSIVE"
-            };
+            ];
 
             Array.Resize(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
-            skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
+            skillFamily2.variants[^1] = new SkillFamily.Variant
             {
                 skillDef = skillDef4,
                 viewableNode = new ViewablesCatalog.Node(skillDef4.skillNameToken, false, null)
@@ -305,32 +316,32 @@ namespace Templar
                 skillDef5.skillDescriptionToken = "TEMPLAR_PRIMARY_BAZOOKA_DESCRIPTION";
                 skillDef5.skillName = "TEMPLAR_PRIMARY_BAZOOKA_NAME";
                 skillDef5.skillNameToken = "TEMPLAR_PRIMARY_BAZOOKA_NAME";
-                skillDef5.keywordTokens = new string[]
-                {
+                skillDef5.keywordTokens =
+                [
                     "KEYWORD_EXPLOSIVE"
-                };
+                ];
                 skillDef5.cancelSprintingOnActivation = true;
 
                 Array.Resize(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
-                skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
+                skillFamily2.variants[^1] = new SkillFamily.Variant
                 {
                     skillDef = skillDef5,
                     viewableNode = new ViewablesCatalog.Node(skillDef5.skillNameToken, false, null)
                 };
-                Loader.entityStates.Add(typeof(TemplarChargeMiniRocket));
-                Loader.skillDefs.Add(skillDef5);
+                Main.entityStates.Add(typeof(TemplarChargeMiniRocket));
+                Main.skillDefs.Add(skillDef5);
             }
 
 
-            Loader.entityStates.Add(typeof(TemplarMinigunSpinUp));
-            Loader.entityStates.Add(typeof(TemplarRifleFire));
-            Loader.entityStates.Add(typeof(TemplarChargeBeam));
-            Loader.entityStates.Add(typeof(TemplarFlamethrower));
+            Main.entityStates.Add(typeof(TemplarMinigunSpinUp));
+            Main.entityStates.Add(typeof(TemplarRifleFire));
+            Main.entityStates.Add(typeof(TemplarChargeBeam));
+            Main.entityStates.Add(typeof(TemplarFlamethrower));
 
-            Loader.skillDefs.Add(skillDef);
-            Loader.skillDefs.Add(skillDef2);
-            Loader.skillDefs.Add(skillDef3);
-            Loader.skillDefs.Add(skillDef4);
+            Main.skillDefs.Add(skillDef);
+            Main.skillDefs.Add(skillDef2);
+            Main.skillDefs.Add(skillDef3);
+            Main.skillDefs.Add(skillDef4);
 
 
 
@@ -392,17 +403,17 @@ namespace Templar
             skillDef2.skillNameToken = "TEMPLAR_SECONDARY_SHOTGUN_NAME";
 
             Array.Resize(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
-            skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
+            skillFamily2.variants[^1] = new SkillFamily.Variant
             {
                 skillDef = skillDef2,
                 viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
             };
 
-            Loader.entityStates.Add(typeof(TemplarThrowClaybomb));
-            Loader.entityStates.Add(typeof(TemplarShotgun));
+            Main.entityStates.Add(typeof(TemplarThrowClaybomb));
+            Main.entityStates.Add(typeof(TemplarShotgun));
 
-            Loader.skillDefs.Add(skillDef);
-            Loader.skillDefs.Add(skillDef2);
+            Main.skillDefs.Add(skillDef);
+            Main.skillDefs.Add(skillDef2);
 
         }
 
@@ -461,17 +472,17 @@ namespace Templar
             skillDef2.skillNameToken = "TEMPLAR_UTILITY_DODGE_NAME";
 
             Array.Resize(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
-            skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
+            skillFamily2.variants[^1] = new SkillFamily.Variant
             {
                 skillDef = skillDef2,
                 viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
             };
 
-            Loader.entityStates.Add(typeof(TemplarOverdrive));
-            Loader.entityStates.Add(typeof(TemplarSidestep));
+            Main.entityStates.Add(typeof(TemplarOverdrive));
+            Main.entityStates.Add(typeof(TemplarSidestep));
 
-            Loader.skillDefs.Add(skillDef);
-            Loader.skillDefs.Add(skillDef2);
+            Main.skillDefs.Add(skillDef);
+            Main.skillDefs.Add(skillDef2);
         }
 
         internal static void SpecialSetup()
@@ -496,10 +507,10 @@ namespace Templar
             skillDef.skillDescriptionToken = "TEMPLAR_SPECIAL_FIRE_DESCRIPTION";
             skillDef.skillName = "TEMPLAR_SPECIAL_FIRE_NAME";
             skillDef.skillNameToken = "TEMPLAR_SPECIAL_FIRE_NAME";
-            skillDef.keywordTokens = new string[]
-            {
+            skillDef.keywordTokens =
+            [
                 "KEYWORD_EXPLOSIVE"
-            };
+            ];
 
 
             component.special = myCharacter.AddComponent<GenericSkill>();
@@ -535,24 +546,24 @@ namespace Templar
             skillDef2.skillNameToken = "TEMPLAR_SPECIAL_SWAP_NAME";
 
             Array.Resize(ref skillFamily2.variants, skillFamily2.variants.Length + 1);
-            skillFamily2.variants[skillFamily2.variants.Length - 1] = new SkillFamily.Variant
+            skillFamily2.variants[^1] = new SkillFamily.Variant
             {
                 skillDef = skillDef2,
                 viewableNode = new ViewablesCatalog.Node(skillDef2.skillNameToken, false, null)
             };
 
-            Loader.entityStates.Add(typeof(TemplarChargeRocket));
-            Loader.entityStates.Add(typeof(TemplarSwapWeapon));
+            Main.entityStates.Add(typeof(TemplarChargeRocket));
+            Main.entityStates.Add(typeof(TemplarSwapWeapon));
 
-            Loader.skillDefs.Add(skillDef);
-            Loader.skillDefs.Add(skillDef2);
+            Main.skillDefs.Add(skillDef);
+            Main.skillDefs.Add(skillDef2);
         }
 
         internal static void CreateMaster()
         {
             doppelganger = LegacyResourcesAPI.Load<GameObject>("prefabs/charactermasters/commandomonstermaster").InstantiateClone("TemplarMonsterMaster");
             doppelganger.GetComponent<CharacterMaster>().bodyPrefab = myCharacter;
-            Loader.masterPrefabs.Add(doppelganger);
+            Main.masterPrefabs.Add(doppelganger);
         }
 
         internal static void PassiveSetup()
@@ -581,7 +592,7 @@ namespace Templar
             LanguageAPI.Add("KEYWORD_RAPIDFIRE", "<style=cKeywordName>Rapidfire</style><style=cSub><style=cIsDamage>Rate of fire</style> increases the longer the skill is held.</style></style>");
             LanguageAPI.Add("KEYWORD_EXPLOSIVE", "<style=cKeywordName>Explosive</style><style=cSub><style=cIsDamage>Ignite</style> <style=cIsUtility>tarred enemies</style>, creating an <style=cIsDamage>explosion</style> for <style=cIsDamage>20% of the damage dealt</style> and <style=cIsHealth>reducing their armor</style>.</style></style>");
             LanguageAPI.Add("TEMPLAR_PRIMARY_MINIGUN_NAME", "Minigun");
-            LanguageAPI.Add("TEMPLAR_PRIMARY_MINIGUN_DESCRIPTION", "<style=cIsDamage>Rapidfire</style>. Rev up and fire your <style=cIsUtility>minigun</style>, dealing <style=cIsDamage>" + (minigunDamageCoefficient.Value * 100f).ToString() + " % damage</style> per bullet. <style=cIsUtility>Slow</style> your movement while shooting, but gain<style=cIsHealing>bonus armor</style>.");
+            LanguageAPI.Add("TEMPLAR_PRIMARY_MINIGUN_DESCRIPTION", "<style=cIsDamage>Rapidfire</style>. Rev up and fire your <style=cIsUtility>minigun</style>, dealing <style=cIsDamage>" + (Templar.minigunDamageCoefficient.Value * 100f).ToString() + "% damage</style> per bullet. <style=cIsUtility>Slow</style> your movement while shooting, but gain <style=cIsHealing>bonus armor</style>.");
             LanguageAPI.Add("TEMPLAR_PRIMARY_PRECISEMINIGUN_NAME", "Tar Rifle");
             LanguageAPI.Add("TEMPLAR_PRIMARY_PRECISEMINIGUN_DESCRIPTION", "Fire a <style=cIsUtility>tar rifle</style>, dealing <style=cIsDamage>" + (rifleDamageCoefficient.Value * 100f).ToString() + "% damage</style> per bullet and applying <style=cIsUtility>tar</style> with high accuracy.");
             LanguageAPI.Add("TEMPLAR_PRIMARY_RAILGUN_NAME", "Railgun");
@@ -772,115 +783,64 @@ namespace Templar
         }
 
         public static GameObject myCharacter;
-
         public static GameObject TemplarPrefab;
-
         public static GameObject characterDisplay;
-
         public static GameObject doppelganger;
-
         private static readonly Color CHAR_COLOR = new(0.784313738f, 0.294117659f, 0.05882353f);
-
         public static GameObject templarRocket;
-
         public static GameObject templarGrenade;
-
         public static GameObject templarRocketEffect;
-
         public static ConfigEntry<float> baseHealth;
-
         public static ConfigEntry<float> healthGrowth;
-
         public static ConfigEntry<float> baseArmor;
-
         public static ConfigEntry<float> baseDamage;
-
         public static ConfigEntry<float> damageGrowth;
-
         public static ConfigEntry<float> baseRegen;
-
         public static ConfigEntry<float> regenGrowth;
-
         public static ConfigEntry<float> FireBuffDurationBonus;
-
         public static ConfigEntry<float> baseJumpPower;
-
         public static ConfigEntry<string> enabled;
-
         public static ConfigEntry<float> minigunDamageCoefficient;
-
         public static ConfigEntry<float> minigunProcCoefficient;
-
         public static ConfigEntry<float> minigunForce;
-
         public static ConfigEntry<float> minigunArmorBoost;
-
         public static ConfigEntry<float> minigunStationaryArmorBoost;
-
         public static ConfigEntry<float> minigunMinFireRate;
-
         public static ConfigEntry<float> minigunMaxFireRate;
-
         public static ConfigEntry<float> minigunFireRateGrowth;
-
         public static ConfigEntry<float> rifleDamageCoefficient;
-
         public static ConfigEntry<float> rifleProcCoefficient;
-
         public static ConfigEntry<float> rifleForce;
-
         public static ConfigEntry<float> rifleFireRate;
-
         public static ConfigEntry<int> clayGrenadeStock;
-
         public static ConfigEntry<float> clayGrenadeCooldown;
-
         public static ConfigEntry<float> clayGrenadeDamageCoefficient;
-
         public static ConfigEntry<float> clayGrenadeProcCoefficient;
-
         public static ConfigEntry<float> clayGrenadeRadius;
-
         public static ConfigEntry<float> clayGrenadeDetonationTime;
-
         public static ConfigEntry<int> blunderbussStock;
-
         public static ConfigEntry<float> blunderbussCooldown;
-
         public static ConfigEntry<int> blunderbussPelletCount;
-
         public static ConfigEntry<float> blunderbussDamageCoefficient;
-
         public static ConfigEntry<float> blunderbussProcCoefficient;
-
         public static ConfigEntry<float> blunderbussSpread;
-
         public static ConfigEntry<int> tarStock;
-
         public static ConfigEntry<float> tarCooldown;
-
         public static ConfigEntry<int> overdriveStock;
-
         public static ConfigEntry<float> overdriveCooldown;
-
         public static ConfigEntry<int> dashStock;
-
         public static ConfigEntry<float> dashCooldown;
-
         public static ConfigEntry<int> bazookaStock;
-
         public static ConfigEntry<float> bazookaCooldown;
-
         public static ConfigEntry<float> bazookaDamageCoefficient;
-
         public static ConfigEntry<float> bazookaProcCoefficient;
-
         public static ConfigEntry<float> bazookaBlastRadius;
-
         public static ConfigEntry<float> miniBazookaDamageCoefficient;
-
         public static ConfigEntry<bool> jellyfishEvent;
-
         public static ConfigEntry<bool> bazookaGoBoom;
+        public static ConfigEntry<bool> EnableTemplarSkin;
+        public static ConfigEntry<bool> EnableEngiVoidSkin;
+        public static ConfigEntry<bool> EnableMalignantOrigins;
+        public static ConfigEntry<bool> EnableUnlocks;
     }
 }

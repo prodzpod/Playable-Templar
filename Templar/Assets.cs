@@ -9,8 +9,9 @@ namespace Templar
     {
         public static void Initialize()
         {
-            MainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Loader.pluginInfo.Location), "templar"));
-            SecondaryAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Loader.pluginInfo.Location), "skillbundle"));
+            MainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Main.pluginInfo.Location), "templar"));
+            SecondaryAssetBundle = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Main.pluginInfo.Location), "skillbundle"));
+            TemplarSkins = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Main.pluginInfo.Location), "templarskins"));
             PopulateAssets();
         }
 
@@ -53,41 +54,25 @@ namespace Templar
         }
 
         public static AssetBundle MainAssetBundle = null;
-
-        private static string[] assetNames = new string[0];
-
         public static AssetBundle SecondaryAssetBundle = null;
+        public static AssetBundle TemplarSkins = null;
 
+        private static string[] assetNames = [];
         public static Texture templarIcon;
-
         public static Texture templarIconOld;
-
         public static Sprite iconP;
-
         public static Sprite icon1;
-
         public static Sprite icon1b;
-
         public static Sprite icon1c;
-
         public static Sprite icon1d;
-
         public static Sprite icon2;
-
         public static Sprite icon2b;
-
         public static Sprite icon3;
-
         public static Sprite icon3b;
-
         public static Sprite icon4;
-
         public static Sprite icon4b;
-
         public static Texture templarSkinTex;
-
         public static GameObject clayBombModel;
-
         public static GameObject clayMissileModel;
     }
 }

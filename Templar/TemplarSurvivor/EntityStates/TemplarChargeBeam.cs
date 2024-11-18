@@ -138,8 +138,10 @@ namespace Templar
             bool flag2 = flag;
             if (flag2)
             {
-                TemplarFireBeam templarFireBeam = new();
-                templarFireBeam.laserDirection = laserDirection;
+                TemplarFireBeam templarFireBeam = new()
+                {
+                    laserDirection = laserDirection
+                };
                 outer.SetNextState(templarFireBeam);
             }
         }

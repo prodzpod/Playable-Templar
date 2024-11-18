@@ -65,8 +65,8 @@ namespace Templar
             //Templar.templarRocket.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/Projectiles/TemplarRocketProjectile", 44);
             Templar.templarRocketEffect.AddComponent<NetworkIdentity>();
             //Templar.templarRocketEffect.RegisterNetworkPrefab("C:Lemurian.cs", "Prefabs/effects/TemplarRocketImpact", 45);
-            Loader.projectilePrefabs.Add(Templar.templarGrenade);
-            Loader.projectilePrefabs.Add(Templar.templarRocket);
+            Main.projectilePrefabs.Add(Templar.templarGrenade);
+            Main.projectilePrefabs.Add(Templar.templarRocket);
         }
     }
 }

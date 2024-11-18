@@ -33,14 +33,23 @@
 		<Reference Include="AK.Wwise.Unity.Timeline">
 		  <HintPath>..\..\libs\AK.Wwise.Unity.Timeline-nstrip.dll</HintPath>
 		</Reference>
+		<Reference Include="BulwarksHaunt">
+		  <HintPath>..\..\libs\BulwarksHaunt-nstrip.dll</HintPath>
+		</Reference>
 		<Reference Include="com.unity.multiplayer-hlapi.Runtime">
 			<HintPath>..\..\libs\com.unity.multiplayer-hlapi.Runtime-nstrip.dll</HintPath>
+		</Reference>
+		<Reference Include="Downpour">
+		  <HintPath>..\..\libs\Downpour-nstrip.dll</HintPath>
 		</Reference>
 		<Reference Include="HGCSharpUtils">
 			<HintPath>..\..\libs\HGCSharpUtils-nstrip.dll</HintPath>
 		</Reference>
 		<Reference Include="HGUnityUtils">
 		  <HintPath>..\..\libs\HGUnityUtils-nstrip.dll</HintPath>
+		</Reference>
+		<Reference Include="Inferno">
+		  <HintPath>..\..\libs\Inferno-nstrip.dll</HintPath>
 		</Reference>
 		<Reference Include="KinematicCharacterController">
 		  <HintPath>..\..\libs\KinematicCharacterController-nstrip.dll</HintPath>
@@ -164,6 +173,9 @@
 		</Reference>
 		<Reference Include="VoidItemAPI">
 			<HintPath>..\..\libs\VoidItemAPI-nstrip.dll</HintPath>
+		</Reference>
+		<Reference Include="ZetArtifacts">
+		  <HintPath>..\..\libs\ZetArtifacts-nstrip.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

@@ -5,6 +5,7 @@ using RoR2;
 using R2API.Utils;
 using System.Collections.Generic;
 using System.Linq;
+using Templar.TemplarSurvivor;
 
 namespace Templar
 {
@@ -12,7 +13,7 @@ namespace Templar
     {
         private static SkinDef.GameObjectActivation[] getActivations(GameObject[] allObjects, params GameObject[] activatedObjects)
         {
-            List<SkinDef.GameObjectActivation> GameObjectActivations = new();
+            List<SkinDef.GameObjectActivation> GameObjectActivations = [];
 
             for (int i = 0; i < allObjects.Length; i++)
             {
@@ -43,10 +44,10 @@ namespace Templar
             LanguageAPI.Add("Templar_DEFAULT_SKIN", "Default");
             SkinDefInfo skinDefInfo = default;
             skinDefInfo.BaseSkins = [];
-            skinDefInfo.MinionSkinReplacements = new SkinDef.MinionSkinReplacement[0];
-            skinDefInfo.ProjectileGhostReplacements = new SkinDef.ProjectileGhostReplacement[0];
+            skinDefInfo.MinionSkinReplacements = [];
+            skinDefInfo.ProjectileGhostReplacements = [];
             skinDefInfo.Icon = Skins.CreateSkinIcon(new Color(0.64f, 0.31f, 0.22f), new Color(0.54f, 0.21f, 0.12f), new Color(0.64f, 0.31f, 0.22f), new Color(0.54f, 0.21f, 0.12f));
-            skinDefInfo.MeshReplacements = new SkinDef.MeshReplacement[0];
+            skinDefInfo.MeshReplacements = [];
             skinDefInfo.Name = "Templar_DEFAULT_SKIN";
             skinDefInfo.NameToken = "Templar_DEFAULT_SKIN";
             skinDefInfo.RendererInfos = characterModel.baseRendererInfos;
@@ -70,6 +71,7 @@ namespace Templar
                 };
 
             skinController.skins = skinDefs.ToArray();
+            TemplarSkins2.Patch();
         }
     }
 }

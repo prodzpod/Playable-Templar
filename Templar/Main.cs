@@ -8,21 +8,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using RoR2.Skills;
 using BepInEx.Logging;
+using HarmonyLib;
+using BepInEx.Bootstrap;
 
 namespace Templar
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [BepInPlugin("com.Tymmey.Templar", "Templar", "1.1.2")]
-    public class Loader : BaseUnityPlugin
+    [BepInPlugin("com.Tymmey.Templar", "Templar", "1.2.0")]
+    [BepInDependency("HIFU.Inferno", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("prodzpod.Downpour", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.TPDespair.ZetArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.themysticsword.bulwarkshaunt", BepInDependency.DependencyFlags.SoftDependency)]
+    public class Main : BaseUnityPlugin
     {
-        public static Loader Instance;
+        public static Main Instance;
         public static ManualLogSource Log;
+        public static Harmony Harmony;
         public static PluginInfo pluginInfo;
         public void Awake()
         {
             Instance = this;
             Log = Logger;
+            Harmony = new Harmony("com.Tymmey.Templar"); // uh oh!
             pluginInfo = Info;
             ReadConfig();
             Assets.Initialize();
@@ -81,6 +89,10 @@ namespace Templar
             Templar.bazookaProcCoefficient = Config.Bind(new ConfigDefinition("8 - Bazooka", "Proc Coefficient"), 0.6f, new ConfigDescription("Bazooka proc coefficient", null, []));
             Templar.bazookaBlastRadius = Config.Bind(new ConfigDefinition("8 - Bazooka", "Blast Radius"), 16f, new ConfigDescription("Bazooka blast radius", null, []));
             Templar.miniBazookaDamageCoefficient = Config.Bind(new ConfigDefinition("8 - Bazooka Mk.2", "Damage"), 5f, new ConfigDescription("Bazooka Mk.2 damage", null, []));
+            Templar.EnableTemplarSkin = Config.Bind("9 - TemplarSkins", "Add Templar Recolors", false, "Set to false to disable it.");
+            Templar.EnableEngiVoidSkin = Config.Bind("9 - TemplarSkins", "Engi Void Skin", false, "Set to false to disable it.");
+            Templar.EnableMalignantOrigins = Config.Bind("9 - TemplarSkins", "Malignant Origins", true, "Set to false to disable it.");
+            Templar.EnableUnlocks = Config.Bind("9 - TemplarSkins", "Unlocks", true, "Set to false to disable it.");
         }
 
         public static void AddItemDisplays()
@@ -95,14 +107,19 @@ namespace Templar
 
         public static bool IsBUDefined { get; private set; }
 
-        internal static List<GameObject> projectilePrefabs = new();
-        internal static List<SurvivorDef> survivorDefs = new();
-        public static List<GameObject> bodyPrefabs = new();
-        internal static List<GameObject> masterPrefabs = new();
-        internal static List<Type> entityStates = new();
-        internal static List<SkillDef> skillDefs = new();
-        internal static List<SkillFamily> skillFamilies = new();
+        internal static List<GameObject> projectilePrefabs = [];
+        internal static List<SurvivorDef> survivorDefs = [];
+        public static List<GameObject> bodyPrefabs = [];
+        internal static List<GameObject> masterPrefabs = [];
+        internal static List<Type> entityStates = [];
+        internal static List<SkillDef> skillDefs = [];
+        internal static List<SkillFamily> skillFamilies = [];
 
+        public static bool Mods(params string[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++) if (!Chainloader.PluginInfos.ContainsKey(arr[i])) return false;
+            return true;
+        }
 
     }
 }

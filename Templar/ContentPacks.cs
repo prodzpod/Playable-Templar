@@ -18,12 +18,12 @@ namespace Templar
         {
             contentPack.buffDefs.Add(Buffs.buffDefs.ToArray());
 
-            contentPack.skillDefs.Add(Loader.skillDefs.ToArray());
-            contentPack.skillFamilies.Add(Loader.skillFamilies.ToArray());
-            contentPack.survivorDefs.Add(Loader.survivorDefs.ToArray());
-            contentPack.bodyPrefabs.Add(Loader.bodyPrefabs.ToArray());
-            contentPack.masterPrefabs.Add(Loader.masterPrefabs.ToArray());
-            contentPack.projectilePrefabs.Add(Loader.projectilePrefabs.ToArray());
+            contentPack.skillDefs.Add(Main.skillDefs.ToArray());
+            contentPack.skillFamilies.Add(Main.skillFamilies.ToArray());
+            contentPack.survivorDefs.Add(Main.survivorDefs.ToArray());
+            contentPack.bodyPrefabs.Add(Main.bodyPrefabs.ToArray());
+            contentPack.masterPrefabs.Add(Main.masterPrefabs.ToArray());
+            contentPack.projectilePrefabs.Add(Main.projectilePrefabs.ToArray());
             args.ReportProgress(1f);
             yield break;
         }
