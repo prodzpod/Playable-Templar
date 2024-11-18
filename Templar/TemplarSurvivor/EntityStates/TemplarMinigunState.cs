@@ -7,91 +7,91 @@ using UnityEngine.Networking;
 
 namespace Templar
 {
-	public class TemplarMinigunState : BaseState
-	{
-		public override void OnEnter()
-		{
-			base.OnEnter();
-			this.oldMass = base.characterMotor.mass;
-			this.muzzleTransform = base.FindModelChild(MinigunState.muzzleName);
-			if (NetworkServer.active && base.characterBody)
-			{
+    public class TemplarMinigunState : BaseState
+    {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            oldMass = characterMotor.mass;
+            muzzleTransform = FindModelChild(MinigunState.muzzleName);
+            if (NetworkServer.active && characterBody)
+            {
 
-				base.characterBody.AddBuff(Buffs.TemplArmorBuff);
-			}
-		}
+                characterBody.AddBuff(Buffs.TemplArmorBuff);
+            }
+        }
 
-		public override void FixedUpdate()
-		{
-			base.FixedUpdate();
-			base.StartAimMode(2.5f, false);
-			base.characterBody.isSprinting = false;
-			bool flag = base.characterMotor.velocity.x == 0f && base.characterMotor.velocity.z == 0f && base.characterMotor.isGrounded;
-			bool isGrounded = base.characterMotor.isGrounded;
-			bool flag2 = flag && isGrounded;
-			bool flag3 = flag2;
-			if (flag3)
-			{
-				if (!base.characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff))
-				{
-					if (NetworkServer.active)
-					{
-						base.characterBody.RemoveBuff(Buffs.TemplArmorBuff);
-						base.characterBody.AddBuff(Buffs.TemplarstationaryArmorBuff);
-					}
-					base.characterMotor.mass = 10000f;
-				}
-			}
-			else
-			{
-				if (base.characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff))
-				{
-					if (NetworkServer.active)
-					{
-						base.characterBody.RemoveBuff(Buffs.TemplarstationaryArmorBuff);
-						base.characterBody.AddBuff(Buffs.TemplArmorBuff);
-					}
-					base.characterMotor.mass = this.oldMass;
-				}
-			}
-		}
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            StartAimMode(2.5f, false);
+            characterBody.isSprinting = false;
+            bool flag = characterMotor.velocity.x == 0f && characterMotor.velocity.z == 0f && characterMotor.isGrounded;
+            bool isGrounded = characterMotor.isGrounded;
+            bool flag2 = flag && isGrounded;
+            bool flag3 = flag2;
+            if (flag3)
+            {
+                if (!characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff))
+                {
+                    if (NetworkServer.active)
+                    {
+                        characterBody.RemoveBuff(Buffs.TemplArmorBuff);
+                        characterBody.AddBuff(Buffs.TemplarstationaryArmorBuff);
+                    }
+                    characterMotor.mass = 10000f;
+                }
+            }
+            else
+            {
+                if (characterBody.HasBuff(Buffs.TemplarstationaryArmorBuff))
+                {
+                    if (NetworkServer.active)
+                    {
+                        characterBody.RemoveBuff(Buffs.TemplarstationaryArmorBuff);
+                        characterBody.AddBuff(Buffs.TemplArmorBuff);
+                    }
+                    characterMotor.mass = oldMass;
+                }
+            }
+        }
 
-		public override void OnExit()
-		{
-			if (NetworkServer.active && base.characterBody)
-			{
-				if (base.HasBuff(Buffs.TemplArmorBuff))
-				{
-					base.characterBody.RemoveBuff(Buffs.TemplArmorBuff);
-				}
-				if (base.HasBuff(Buffs.TemplarstationaryArmorBuff))
-				{
-					base.characterBody.RemoveBuff(Buffs.TemplarstationaryArmorBuff);
-				}
-			}
-			base.characterMotor.mass = this.oldMass;
-			base.OnExit();
-		}
+        public override void OnExit()
+        {
+            if (NetworkServer.active && characterBody)
+            {
+                if (HasBuff(Buffs.TemplArmorBuff))
+                {
+                    characterBody.RemoveBuff(Buffs.TemplArmorBuff);
+                }
+                if (HasBuff(Buffs.TemplarstationaryArmorBuff))
+                {
+                    characterBody.RemoveBuff(Buffs.TemplarstationaryArmorBuff);
+                }
+            }
+            characterMotor.mass = oldMass;
+            base.OnExit();
+        }
 
-		protected ref InputBankTest.ButtonState skillButtonState
-		{
-			get
-			{
-				return ref base.inputBank.skill1;
-			}
-		}
+        protected ref InputBankTest.ButtonState skillButtonState
+        {
+            get
+            {
+                return ref inputBank.skill1;
+            }
+        }
 
-		public override InterruptPriority GetMinimumInterruptPriority()
-		{
-			return InterruptPriority.Skill;
-		}
+        public override InterruptPriority GetMinimumInterruptPriority()
+        {
+            return InterruptPriority.Skill;
+        }
 
-		//private static readonly BuffIndex slowBuff;
+        //private static readonly BuffIndex slowBuff;
 
-		private bool standStill;
+        private bool standStill;
 
-		protected Transform muzzleTransform;
+        protected Transform muzzleTransform;
 
-		private float oldMass;
-	}
+        private float oldMass;
+    }
 }

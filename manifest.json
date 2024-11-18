@@ -1,0 +1,10 @@
+{
+    "name": "TemplarReturnsReturns",
+    "version_number": "1.1.1",
+    "website_url": "https://github.com/prodzpod/Playable-Templar/",
+    "description": "THE RETURN OF THE RETURN OF THE KING",
+    "dependencies": [
+	"tristanmcpherson-R2API-4.0.11",
+        "bbepis-BepInExPack-5.4.1902"
+    ]
+}

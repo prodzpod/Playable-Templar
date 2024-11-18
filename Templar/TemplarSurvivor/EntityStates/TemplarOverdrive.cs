@@ -6,64 +6,64 @@ using UnityEngine;
 
 namespace Templar
 {
-	public class TemplarOverdrive : BaseSkillState
-	{
-		public override void OnEnter()
-		{
-			base.OnEnter();
-			bool flag = base.characterBody;
-			bool flag2 = flag;
-			if (flag2)
-			{
-				base.characterBody.AddTimedBuff(Buffs.TemplarOverdriveBuff, 3f);
-			}
-			EffectManager.SimpleMuzzleFlash(FireTarball.effectPrefab, base.gameObject, "Root", false);
-			RoR2.EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosivePotExplosion"), new RoR2.EffectData
-			{
-				origin = base.characterBody.corePosition,
-				scale = 12f
-			}, true); 
+    public class TemplarOverdrive : BaseSkillState
+    {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            bool flag = characterBody;
+            bool flag2 = flag;
+            if (flag2)
+            {
+                characterBody.AddTimedBuff(Buffs.TemplarOverdriveBuff, 3f);
+            }
+            EffectManager.SimpleMuzzleFlash(FireTarball.effectPrefab, gameObject, "Root", false);
+            EffectManager.SpawnEffect(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosivePotExplosion"), new EffectData
+            {
+                origin = characterBody.corePosition,
+                scale = 12f
+            }, true);
 
-			BlastAttack blastAttack = new BlastAttack
-			{
-				attacker = base.gameObject,
-				inflictor = base.gameObject,
-				teamIndex = base.teamComponent.teamIndex,
-				baseForce = TemplarOverdrive.pushForce,
-				bonusForce = Vector3.zero,
-				position = base.transform.position,
-				radius = 12f,
-				falloffModel = BlastAttack.FalloffModel.None,
-				crit = false,
-				baseDamage = 0f,
-				procCoefficient = 0f,
-				damageType = DamageType.ClayGoo
-			};
-			blastAttack.Fire();
-			this.modelTransform = base.GetModelTransform();
-			bool flag3 = this.modelTransform;
-			bool flag4 = flag3;
-			if (flag4)
-			{
-				TemporaryOverlay temporaryOverlay = this.modelTransform.gameObject.AddComponent<TemporaryOverlay>();
-				temporaryOverlay.duration = 8f;
-				temporaryOverlay.animateShaderAlpha = true;
-				temporaryOverlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
-				temporaryOverlay.destroyComponentOnEnd = true;
-				temporaryOverlay.originalMaterial = LegacyResourcesAPI.Load<Material>("Materials/matClayGooDebuff");
-				temporaryOverlay.AddToCharacerModel(this.modelTransform.GetComponent<CharacterModel>());
-			}
-			Util.PlayAttackSpeedSound(FireTarball.attackSoundString, base.gameObject, 0.75f);
-			this.outer.SetNextStateToMain();
-		}
+            BlastAttack blastAttack = new()
+            {
+                attacker = gameObject,
+                inflictor = gameObject,
+                teamIndex = teamComponent.teamIndex,
+                baseForce = pushForce,
+                bonusForce = Vector3.zero,
+                position = transform.position,
+                radius = 12f,
+                falloffModel = BlastAttack.FalloffModel.None,
+                crit = false,
+                baseDamage = 0f,
+                procCoefficient = 0f,
+                damageType = DamageType.ClayGoo
+            };
+            blastAttack.Fire();
+            modelTransform = GetModelTransform();
+            bool flag3 = modelTransform;
+            bool flag4 = flag3;
+            if (flag4)
+            {
+                TemporaryOverlayInstance temporaryOverlay = TemporaryOverlayManager.AddOverlay(modelTransform.gameObject);
+                temporaryOverlay.duration = 8f;
+                temporaryOverlay.animateShaderAlpha = true;
+                temporaryOverlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
+                temporaryOverlay.destroyComponentOnEnd = true;
+                temporaryOverlay.originalMaterial = LegacyResourcesAPI.Load<Material>("Materials/matClayGooDebuff");
+                temporaryOverlay.AddToCharacterModel(modelTransform.GetComponent<CharacterModel>());
+            }
+            Util.PlayAttackSpeedSound(FireTarball.attackSoundString, gameObject, 0.75f);
+            outer.SetNextStateToMain();
+        }
 
-		public override void OnExit()
-		{
-			base.OnExit();
-		}
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
 
-		public static float pushForce = 2500f;
+        public static float pushForce = 2500f;
 
-		private Transform modelTransform;
-	}
+        private Transform modelTransform;
+    }
 }

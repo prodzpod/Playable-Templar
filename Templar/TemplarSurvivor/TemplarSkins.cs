@@ -12,7 +12,7 @@ namespace Templar
     {
         private static SkinDef.GameObjectActivation[] getActivations(GameObject[] allObjects, params GameObject[] activatedObjects)
         {
-            List<SkinDef.GameObjectActivation> GameObjectActivations = new List<SkinDef.GameObjectActivation>();
+            List<SkinDef.GameObjectActivation> GameObjectActivations = new();
 
             for (int i = 0; i < allObjects.Length; i++)
             {
@@ -41,11 +41,11 @@ namespace Templar
 
             #region Default Skin
             LanguageAPI.Add("Templar_DEFAULT_SKIN", "Default");
-            LoadoutAPI.SkinDefInfo skinDefInfo = default(LoadoutAPI.SkinDefInfo);
-            skinDefInfo.BaseSkins = Array.Empty<SkinDef>();
+            SkinDefInfo skinDefInfo = default;
+            skinDefInfo.BaseSkins = [];
             skinDefInfo.MinionSkinReplacements = new SkinDef.MinionSkinReplacement[0];
             skinDefInfo.ProjectileGhostReplacements = new SkinDef.ProjectileGhostReplacement[0];
-            skinDefInfo.Icon = LoadoutAPI.CreateSkinIcon(new Color(0.64f, 0.31f, 0.22f), new Color(0.54f, 0.21f, 0.12f), new Color(0.64f, 0.31f, 0.22f), new Color(0.54f, 0.21f, 0.12f));
+            skinDefInfo.Icon = Skins.CreateSkinIcon(new Color(0.64f, 0.31f, 0.22f), new Color(0.54f, 0.21f, 0.12f), new Color(0.64f, 0.31f, 0.22f), new Color(0.54f, 0.21f, 0.12f));
             skinDefInfo.MeshReplacements = new SkinDef.MeshReplacement[0];
             skinDefInfo.Name = "Templar_DEFAULT_SKIN";
             skinDefInfo.NameToken = "Templar_DEFAULT_SKIN";
@@ -57,11 +57,11 @@ namespace Templar
             Material material = array[0].defaultMaterial;
             if (material)
             {
-                material = UnityEngine.Object.Instantiate<Material>(LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().baseRendererInfos[0].defaultMaterial);
+                material = UnityEngine.Object.Instantiate(LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").GetComponentInChildren<CharacterModel>().baseRendererInfos[0].defaultMaterial);
                 array[0].defaultMaterial = material;
             }
             skinDefInfo.RendererInfos = array;
-            SkinDef defaultSkin = LoadoutAPI.CreateNewSkinDef(skinDefInfo);
+            SkinDef defaultSkin = Skins.CreateNewSkinDef(skinDefInfo);
             #endregion
 
             var skinDefs = new List<SkinDef>()
