@@ -1,6 +1,7 @@
 ﻿using BepInEx.Configuration;
 using EntityStates;
 using EntityStates.ClayBruiserMonster;
+using Inferno.Stat_AI;
 using KinematicCharacterController;
 using R2API;
 using R2API.Utils;
@@ -114,6 +115,13 @@ namespace Templar
             survivorDef.outroFlavorToken = "Templar_ENDING";
             survivorDef.desiredSortPosition = 16f;
             Main.survivorDefs.Add(survivorDef);
+            CharacterBody body = myCharacter.GetComponent<CharacterBody>();
+            body.portraitIcon = Assets.TemplarSkins.LoadAsset<Sprite>("Assets/texSurvivorTemplar.png").texture;
+            body.baseNameToken = "TEMPLAR_SURVIVOR_NAME";
+            body.subtitleNameToken = "TEMPLAR_SURVIVOR_SUBTITLE";
+            KinematicCharacterMotor motor = body.GetComponent<KinematicCharacterMotor>();
+            if (motor) motor.playerCharacter = true;
+            TemplarPrefab.GetComponent<DeathRewards>().logUnlockableDef = null;
             Main.bodyPrefabs.Add(myCharacter);
         }
 
@@ -154,11 +162,6 @@ namespace Templar
             ContentAddition.AddSkillFamily(component.secondary.skillFamily);
             ContentAddition.AddSkillFamily(component.utility.skillFamily);
             ContentAddition.AddSkillFamily(component.special.skillFamily);
-            CharacterBody body = myCharacter.GetComponent<CharacterBody>();
-            body.portraitIcon = Assets.TemplarSkins.LoadAsset<Sprite>("Assets/texSurvivorTemplar.png").texture;
-            body.baseNameToken = "TEMPLAR_SURVIVOR_NAME";
-            body.subtitleNameToken = "TEMPLAR_SURVIVOR_SUBTITLE";
-            TemplarPrefab.GetComponent<DeathRewards>().logUnlockableDef = null;
             if (EnableMalignantOrigins.Value) MalignantOrigins.Patch();
             if (EnableUnlocks.Value) Achievements.Patch();
         }
@@ -342,10 +345,6 @@ namespace Templar
             Main.skillDefs.Add(skillDef2);
             Main.skillDefs.Add(skillDef3);
             Main.skillDefs.Add(skillDef4);
-
-
-
-
         }
 
         internal static void SecondarySetup()

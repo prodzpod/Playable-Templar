@@ -15,7 +15,7 @@ namespace Templar
 {
     [BepInDependency("com.bepis.r2api", BepInDependency.DependencyFlags.HardDependency)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [BepInPlugin("com.Tymmey.Templar", "Templar", "1.2.1")]
+    [BepInPlugin("com.Tymmey.Templar", "Templar", "1.2.2")]
     [BepInDependency("HIFU.Inferno", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("prodzpod.Downpour", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.TPDespair.ZetArtifacts", BepInDependency.DependencyFlags.SoftDependency)]
@@ -52,7 +52,7 @@ namespace Templar
             Templar.baseArmor = Config.Bind(new ConfigDefinition("1 - Templar", "Armor"), 15f, new ConfigDescription("Base armor", null, []));
             Templar.baseRegen = Config.Bind(new ConfigDefinition("1 - Templar", "Regen"), 0.5f, new ConfigDescription("Base HP regen", null, []));
             Templar.regenGrowth = Config.Bind(new ConfigDefinition("1 - Templar", "Regen growth"), 0.5f, new ConfigDescription("HP regen per level", null, []));
-            Templar.bazookaGoBoom = Config.Bind(new ConfigDefinition("01 - Templar", "Mini Bazooka Primary"), false, new ConfigDescription("Enables Bazooka Mk.2", null, []));
+            Templar.bazookaGoBoom = Config.Bind(new ConfigDefinition("1 - Templar", "Mini Bazooka Primary"), false, new ConfigDescription("Enables Bazooka Mk.2", null, []));
             Templar.minigunDamageCoefficient = Config.Bind(new ConfigDefinition("2 - Minigun", "Damage"), 0.4f, new ConfigDescription("Minigun damage per bullet", null, []));
             Templar.minigunProcCoefficient = Config.Bind(new ConfigDefinition("2 - Minigun", "Proc Coefficient"), 0.4f, new ConfigDescription("Minigun proc coefficient per bullet", null, []));
             Templar.minigunForce = Config.Bind(new ConfigDefinition("2 - Minigun", "Force"), 3f, new ConfigDescription("Minigun bullet force", null, []));
