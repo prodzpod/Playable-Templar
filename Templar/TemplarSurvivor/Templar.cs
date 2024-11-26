@@ -25,11 +25,13 @@ namespace Templar
             SkillSetup();
             CreateMaster();
             TemplarSkins.RegisterSkins();
+            if (EnableUnlocks.Value) Achievements.Patch();
         }
 
         internal static void TemplarSurvivor()
         {
             myCharacter = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/ClayBruiserBody").InstantiateClone("Templar_Survivor");
+            myCharacter.GetComponent<ModelLocator>().modelTransform = myCharacter.transform.Find("ModelBase/mdlClayBruiser");
             myCharacter.GetComponent<ModelLocator>().modelBaseTransform.gameObject.transform.localScale = Vector3.one * 0.9f;
             myCharacter.GetComponent<ModelLocator>().modelBaseTransform.gameObject.transform.Translate(new Vector3(0f, 1.6f, 0f));
             foreach (KinematicCharacterMotor kinematicCharacterMotor in myCharacter.GetComponentsInChildren<KinematicCharacterMotor>())
@@ -39,13 +41,13 @@ namespace Templar
             myCharacter.GetComponent<CharacterBody>().aimOriginTransform.Translate(new Vector3(0f, 0f, 0f));
             myCharacter.GetComponent<SetStateOnHurt>().canBeHitStunned = false;
             myCharacter.tag = "Player";
-            characterDisplay = myCharacter.GetComponent<ModelLocator>().modelBaseTransform.gameObject.InstantiateClone("TemplarDisplay");
-            characterDisplay.transform.localScale = Vector3.one * 0.8f;
+            characterDisplay = myCharacter.GetComponent<ModelLocator>().modelBaseTransform.gameObject;
+            // characterDisplay.transform.localScale = Vector3.one * 0.8f;
             characterDisplay.AddComponent<TemplarMenuAnim>();
-            characterDisplay.AddComponent<NetworkIdentity>();
+            // characterDisplay.AddComponent<NetworkIdentity>();
             GameObject gameObject = LegacyResourcesAPI.Load<GameObject>("Prefabs/CharacterBodies/Pot2Body");
             MeshRenderer componentInChildren = gameObject.GetComponentInChildren<MeshRenderer>();
-            GameObject gameObject2 = componentInChildren.gameObject.InstantiateClone("VagabondHead");
+            GameObject gameObject2 = componentInChildren.gameObject.InstantiateClone("VagabondHead", false);
             UnityEngine.Object.Destroy(gameObject2.GetComponent<HurtBoxGroup>());
             UnityEngine.Object.Destroy(gameObject2.transform.GetComponentInChildren<HurtBox>());
             UnityEngine.Object.Destroy(gameObject2.transform.GetChild(0).gameObject);
@@ -163,7 +165,6 @@ namespace Templar
             ContentAddition.AddSkillFamily(component.utility.skillFamily);
             ContentAddition.AddSkillFamily(component.special.skillFamily);
             if (EnableMalignantOrigins.Value) MalignantOrigins.Patch();
-            if (EnableUnlocks.Value) Achievements.Patch();
         }
 
         internal static void PrimarySetup()

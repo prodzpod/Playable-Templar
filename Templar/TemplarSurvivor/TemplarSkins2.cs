@@ -17,10 +17,9 @@ namespace Templar.TemplarSurvivor
         {
             bodyPrefab = Templar.TemplarPrefab;
             gameObject = bodyPrefab.GetComponent<ModelLocator>().modelTransform.gameObject;
-            gameObject.transform.Find("ClayBruiserArmature").Find("ROOT").Find("base").Find("stomach").Find("chest").Find("neck").Find("head").Find("VagabondHead").gameObject.SetActive(false);
+            // gameObject.transform.Find("ClayBruiserArmature").Find("ROOT").Find("base").Find("stomach").Find("chest").Find("neck").Find("head").Find("VagabondHead").gameObject.SetActive(false);
             ModelSkinController modelSkinController = gameObject.GetComponent<ModelSkinController>();
-            defaultSkin = modelSkinController.skins[0];
-            List<SkinDef> templarSkins = [defaultSkin];
+            List<SkinDef> templarSkins = [.. modelSkinController.skins];
             if (Templar.EnableTemplarSkin.Value)
             {
                 templarSkins.Add(AddTemplarSkin("skinTemplarYellowAlt", "Yellow", rgb(183, 96, 20), rgb(85, 37, 16)));

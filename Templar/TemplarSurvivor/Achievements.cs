@@ -50,7 +50,8 @@ namespace Templar.TemplarSurvivor
             AddUnlockableSkill("TEMPLAR_SECONDARY_SHOTGUN_NAME");
             AddUnlockableSkill("TEMPLAR_UTILITY_DODGE_NAME");
             AddUnlockableSkill("TEMPLAR_SPECIAL_SWAP_NAME");
-            AddUnlockableSkin("skinTemplarAlt", "Templar.Alt1");
+            AddUnlockableSkin("TEMPLARBODY_ALT_SKIN_NAME", "Templar.Alt1");
+            // AddUnlockableSkin("skinTemplarAlt", "Templar.Alt1");
             if (Main.Mods("com.themysticsword.bulwarkshaunt")) AddUnlockableSkin("skinTemplarBulwarksHauntAlt", "Templar.BulwarksHaunt_Alt");
             AddUnlockableSkin("skinTemplarGoldAlt", "Templar.Enemy");
             if (Main.Mods("prodzpod.Downpour"))
@@ -61,13 +62,14 @@ namespace Templar.TemplarSurvivor
             AddUnlockableSkin("TemplarNeo", "Templar.E8");
             if (Main.Mods("HIFU.Inferno")) AddUnlockableSkin("skinTemplarInfernoAlt", "Templar.Inferno");
         }
-        public static void MakeUnlockable(string name)
+        public static UnlockableDef MakeUnlockable(string name)
         {
             UnlockableDef unlockableDef = ScriptableObject.CreateInstance<UnlockableDef>();
             unlockableDef.cachedName = name;
             ContentAddition.AddUnlockableDef(unlockableDef);
             unlockables.Add(name, unlockableDef);
             Main.Log.LogDebug("Registered Unlockable " + name);
+            return unlockableDef;
         }
         public static void AddUnlockableSurvivor(string bodyName, string name)
         {
