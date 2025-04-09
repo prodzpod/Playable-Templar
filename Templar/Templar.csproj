@@ -171,9 +171,6 @@
 		<Reference Include="vanillaVoid">
 			<HintPath>..\..\libs\vanillaVoid-nstrip.dll</HintPath>
 		</Reference>
-		<Reference Include="VoidItemAPI">
-			<HintPath>..\..\libs\VoidItemAPI-nstrip.dll</HintPath>
-		</Reference>
 		<Reference Include="ZetArtifacts">
 		  <HintPath>..\..\libs\ZetArtifacts-nstrip.dll</HintPath>
 		</Reference>

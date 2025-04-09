@@ -2,6 +2,7 @@
 using RoR2;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace Templar.TemplarSurvivor
             // gameObject.transform.Find("ClayBruiserArmature").Find("ROOT").Find("base").Find("stomach").Find("chest").Find("neck").Find("head").Find("VagabondHead").gameObject.SetActive(false);
             ModelSkinController modelSkinController = gameObject.GetComponent<ModelSkinController>();
             List<SkinDef> templarSkins = [.. modelSkinController.skins];
+            defaultSkin = templarSkins.First();
             if (Templar.EnableTemplarSkin.Value)
             {
                 templarSkins.Add(AddTemplarSkin("skinTemplarYellowAlt", "Yellow", rgb(183, 96, 20), rgb(85, 37, 16)));

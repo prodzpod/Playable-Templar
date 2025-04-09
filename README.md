@@ -34,6 +34,10 @@ His special, Bazooka, fires a rocket that deals massive damage in a huge radius 
 - Railgun and Flamethrower don't ignite tar for clients
 
 ## Changelog
+`1.3.1`
+- fixed for sots 2.0
+- removed jank thanks r2api
+
 `1.3.0`
 - fixed achievements not working
 - added rob's mastery skin back

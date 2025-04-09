@@ -1,7 +1,6 @@
 ﻿using BepInEx.Configuration;
 using EntityStates;
 using EntityStates.ClayBruiserMonster;
-using Inferno.Stat_AI;
 using KinematicCharacterController;
 using R2API;
 using R2API.Utils;

@@ -62,53 +62,7 @@ namespace Templar.TemplarSurvivor
             SkillLocator loc = Templar.myCharacter.GetComponent<SkillLocator>();
             loc.passiveSkill.enabled = false;
             loc.passiveSkill.keywordToken = null;
-            // this REALLY should be some kind of r2api thing
-            if (!Main.Mods("com.TeamSandswept.Sandswept") && !Main.Mods("prodzpod.MinerSkillReturns") && !Main.Mods("xyz.yekoc.PassiveAgression"))
-            {
-                On.RoR2.UI.LoadoutPanelController.Row.FromSkillSlot += (orig, owner, bodyI, slotI, slot) =>
-                {
-                    LoadoutPanelController.Row row = (LoadoutPanelController.Row)orig(owner, bodyI, slotI, slot);
-                    if (slot.skillFamily == passive.skillFamily)
-                    {
-                        Transform label = row.rowPanelTransform.Find("SlotLabel") ?? row.rowPanelTransform.Find("LabelContainer").Find("SlotLabel");
-                        if (label) label.GetComponent<LanguageTextMeshController>().token = "Passive";
-                    }
-                    return row;
-                };
-                IL.RoR2.UI.CharacterSelectController.BuildSkillStripDisplayData += (il) =>
-                {
-                    ILCursor c = new ILCursor(il);
-                    int skillIndex = -1;
-                    if (c.TryGotoNext(x => x.MatchLdloc(out skillIndex), x => x.MatchLdfld(typeof(GenericSkill).GetField("hideInCharacterSelect")), x => x.MatchBrtrue(out _)) && skillIndex != (-1) && c.TryGotoNext(MoveType.After, x => x.MatchLdfld(typeof(SkillFamily.Variant).GetField("skillDef")), x => x.MatchStloc(out _)))
-                    {
-                        if (c.TryGotoNext(x => x.MatchCallOrCallvirt(typeof(List<StripDisplayData>).GetMethod("Add"))))
-                        {
-                            c.Remove();
-                            c.Emit(OpCodes.Ldloc, skillIndex);
-                            c.EmitDelegate<Action<List<StripDisplayData>, StripDisplayData, GenericSkill>>((list, disp, ski) =>
-                            {
-                                if (SkillCatalog.GetSkillFamilyName(ski.skillFamily.catalogIndex).ToUpper().Contains("PASSIVE")) list.Insert(0, disp);
-                                else list.Add(disp);
-                            });
-                        }
-                    }
-                };
-                IL.RoR2.UI.LoadoutPanelController.Rebuild += (il) =>
-                {
-                    ILCursor c = new ILCursor(il);
-                    if (c.TryGotoNext(MoveType.After, x => x.MatchLdloc(0), x => x.MatchCallOrCallvirt(out _), x => x.MatchCallOrCallvirt(out _), x => x.MatchStloc(1)))
-                    {
-                        c.Emit(OpCodes.Ldloc_1);
-                        c.Emit(OpCodes.Ldarg_0);
-                        c.EmitDelegate<Action<List<GenericSkill>, LoadoutPanelController>>((list, self) =>
-                        {
-                            foreach (var slot in list.Where((slot) => { return slot != list.First() && slot.skillFamily == passive.skillFamily; }))
-                                self.rows.Add(LoadoutPanelController.Row.FromSkillSlot(self, self.currentDisplayData.bodyIndex, list.FindIndex((skill) => skill == slot), slot));
-                            list.RemoveAll((slot) => { return slot != list.First() && slot.skillFamily == passive.skillFamily; });
-                        });
-                    }
-                };
-            }
+            // this IS in r2api <3333333
             Stage.onStageStartGlobal += _ => malignantCharacters.Clear();
         }
 
